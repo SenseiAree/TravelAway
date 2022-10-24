@@ -15,9 +15,18 @@ GO
 IF OBJECT_ID('Customers') IS NOT NULL
 	DROP TABLE Customers
 GO
+IF OBJECT_ID('PackageCategories') IS NOT NULL
+	DROP TABLE PackageCategories
+GO
+
+Create table PackageCategories(
+	CategoryId varchar(5) primary key,
+	CategoryName varchar(20) not null unique,
+    check(SUBSTRING(CategoryId, 1, 2) != 'PC')
+	)
 
 Create table Customers(
-	CustomerID int primary key,
+	CustomerID varchar(5) primary key,
 	FirstName varchar(30) not null,
 	LastName varchar(30) not null,
 	EmailId VARCHAR(50) CONSTRAINT [chk_EmailId] CHECK ([EmailId] LIKE '%_@__%.__%') NOT NULL,
