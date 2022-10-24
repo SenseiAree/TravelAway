@@ -28,6 +28,7 @@ GO
 Create table PackageCategories(
 	CategoryId varchar(5) primary key,
 	CategoryName varchar(20) not null unique,
+	TypeOfPackage VARCHAR(15) CONSTRAINT chk_TypeOfPackage CHECK(TypeOfPackage IN ('International','Domestic')),
     check(SUBSTRING(CategoryId, 1, 2) = 'PC')
 	)
 
@@ -41,7 +42,7 @@ Create table Packages(
 Create table PackageDetails(
 	PackageDetailsId varchar(5) primary key,
 	PackageId varchar(5) references Packages(PackageId),
-	PlacesToVisit varchar(30) not null,
+	PlacesToVisit varchar(50) not null,
 	PackageDescription varchar(255) not null,
 	DaysAndNight varchar(5) not null,
 	Price int not null,
