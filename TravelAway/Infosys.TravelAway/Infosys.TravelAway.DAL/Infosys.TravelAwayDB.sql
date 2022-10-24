@@ -11,7 +11,7 @@ GO
 USE TravelAwayDB
 GO
 
-
+--If table exists, then remove them
 IF OBJECT_ID('Customers') IS NOT NULL
 	DROP TABLE Customers
 GO
@@ -25,6 +25,7 @@ IF OBJECT_ID('PackageDetails') IS NOT NULL
 	DROP TABLE PackageDetails
 GO
 
+--Scripts to Create Tables
 Create table PackageCategories(
 	CategoryId varchar(5) primary key,
 	CategoryName varchar(20) not null unique,
@@ -70,4 +71,10 @@ Create table Customers(
     check(DateOfBirth < GETDATE())
    )
 
+--Drop Stored Procedure if exists, usp_AddCustomerDetails
 
+IF OBJECT_ID('usp_AddCustomerDetails') IS NOT NULL
+	DROP Procedure usp_AddCustomerDetails
+GO
+
+--Stored Procedure
