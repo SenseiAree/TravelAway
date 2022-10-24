@@ -29,29 +29,32 @@ GO
 
 --Scripts to Create Tables
 Create table PackageCategories(
-	CategoryId int primary key,
-	CategoryName varchar(20) not null unique
+	CategoryId varchar(5) primary key,
+	CategoryName varchar(20) not null unique,
+	CHECK(SUBSTRING(CategoryId,1,2) = 'PC')
 	)
 
 Create table Packages(
-	PackageId int primary key,
+	PackageId varchar(5) primary key,
 	PackageName varchar(60) not null,
 	PackageDesc varchar(255) not null,
 	TypeOfPackage VARCHAR(15) CONSTRAINT chk_TypeOfPackage CHECK(TypeOfPackage IN ('International','Domestic')),
-	CategoryId int references PackageCategories(CategoryId)
+	CategoryId varchar(5) references PackageCategories(CategoryId) not null,
+	CHECK(SUBSTRING(PackageId,1,1) = 'P')
 	)
 
 Create table PackageDetails(
-	PackageDetailsId int primary key,
-	PackageId int references Packages(PackageId),
-	PlacesToVisit varchar(50) not null,
+	PackageDetailsId varchar(6) primary key,
+	PackageId varchar(5) references Packages(PackageId) not null,
+	PlacesToVisit varchar(255) not null,
 	PackageDescription varchar(255) not null,
 	DaysAndNight varchar(5) not null,
 	Price int not null,
 	Accommodation char(1) not null,
-	check(Price>0)
+	check(Price>0),
+	check(Accommodation IN ('T','F')),
+	CHECK(SUBSTRING(PackageDetailsId,1,2) = 'PD')
 )
-
 
 Create table Customers(
 	CustomerID int primary key,
@@ -63,7 +66,7 @@ Create table Customers(
     ContactNumber varchar(10) not null,
     DateOfBirth date not null,
     Address varchar(250) not null,
-	PackageId int references Packages(PackageId), 
+	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId) not null, 
     check (Gender In('M', 'F')),
     check(SUBSTRING(ContactNumber, 1, 1) != '0'),
     check(DateOfBirth < GETDATE())
@@ -97,82 +100,253 @@ start with 1000
 increment by 1;
 
 Create SEQUENCE PackageCategoriesSequence
-start with 1000
+start with 100
 increment by 1;
 
 
 --Inserts HardCoded Values for PackageCategories using PackageCategoriesSequence
 INSERT INTO [dbo].[PackageCategories] VALUES(
-	NEXT VALUE FOR PackageCategoriesSequence,
+	CONCAT('PC',NEXT VALUE FOR PackageCategoriesSequence),
 	'Adventure'
 ),(
-	NEXT VALUE FOR PackageCategoriesSequence,
+	CONCAT('PC',NEXT VALUE FOR PackageCategoriesSequence),
 	'Nature'
 ),(
-	NEXT VALUE FOR PackageCategoriesSequence,
+	CONCAT('PC',NEXT VALUE FOR PackageCategoriesSequence),
 	'Religious'
 ),(
-	NEXT VALUE FOR PackageCategoriesSequence,
+	CONCAT('PC',NEXT VALUE FOR PackageCategoriesSequence),
 	'Village'
 ),(
-	NEXT VALUE FOR PackageCategoriesSequence,
+	CONCAT('PC',NEXT VALUE FOR PackageCategoriesSequence),
 	'Wildlife'
 )
 
 INSERT INTO [dbo].[Packages] VALUES(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Andaman & Nicobar',
 	'A set of Island, known for its natural wildlife. Excellent place for water adventures',
 	'Domestic',
-	1001
+	'PC101'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'North-East India',
 	'Known as the chicken head of India. A variety of natural life and the local environment make it an awesome place',
 	'Domestic',
-	1004
+	'PC104'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Europe',
 	'The fun of all life happens here. From streets to the monuments every thing happens here and its fun loving',
 	'International',
-	1000
+	'PC100'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'America',
 	'The place that never sleeps',
 	'International',
-	1000
+	'PC100'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'New Zealand',
 	'The most adventurous place in the world. Very sparsely populated country that makes awesome oppurtunities for adventure',
 	'International',
-	1000
+	'PC100'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Africa',
 	'Take a deep dive to the earthly forests of Africa and explore the greens',
 	'International',
-	1004
+	'PC104'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Nagaland',
 	'Nagaland is famous for its spiritual holiness and calm environment. The street food are a must to try on.',
 	'Domestic',
-	1002
+	'PC102'
 ),(
-	NEXT VALUE FOR PackageSequence,
+	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Buffalo Springs, Texas',
 	'Buffalo Springs is a village in Lubbock County, Texas, United States which is famous for its cultural heritage and pride',
 	'International',
-	1003
+	'PC103'
+)
+
+INSERT Into [dbo].[PackageDetails] VALUES(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1001',
+	'Assam, Nagaland, Sikkim, Manipur',
+	'Northeast India is the easternmost region of India representing both a geographic and political administrative division of the country. It comprises eight states – Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Tripura and Sikkim.',
+	'6/7',
+	28000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1001',
+	'Assam, Nagaland, Sikkim, Manipur, Meghalaya, Tripura',
+	'Northeast India is the easternmost region of India, comprises eight states – Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Tripura and Sikkim.',
+	'8/9',
+	40000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1001',
+	'Assam, Nagaland, Sikkim',
+	'Northeast India is the easternmost region of India, comprises eight states – Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Tripura and Sikkim. This package trips you to three of them',
+	'4/3',
+	20000,
+	'F'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1000',
+	'Swaraj Dweep, Port Blair, Baratang, Barren Island, Diglipur, Rangat',
+	'The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests.',
+	'7/6',
+	56000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1000',
+	'Port Blair, Baratang, Diglipur, Mayabunder',
+	'The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests.',
+	'6/5',
+	36000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1000',
+	'Swaraj Dweep, Mayabunder, Diglipur, Rangat',
+	'The Andaman Islands are an Indian archipelago in the Bay of Bengal.',
+	'5/4',
+	32000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1002',
+	'London, Paris, France, Rome, Amsterdam, Berlin, Barcelona, Prague, Athens, Venice, Madrid',
+	'Europe is a landmass, located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere. Comprising the westernmost peninsulas of Eurasia.',
+	'10/9',
+	62000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1002',
+	'London, Paris, France, Rome',
+	'Europe is a landmass, located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere. Comprising the westernmost peninsulas of Eurasia.',
+	'7/8',
+	42000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1002',
+	'Berlin, Barcelona, Prague, Athens, Venice, Madrid',
+	'Europe is a landmass, located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere. Comprising the westernmost peninsulas of Eurasia.',
+	'5/4',
+	34000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1003',
+	'New York, San Francisco, Los Angeles, Chicago',
+	'The U.S. is a country of 50 states covering a vast swath of North America, with Alaska in the northwest and Hawaii extending the nation’s presence into the Pacific Ocean.',
+	'6/6',
+	44000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1003',
+	'Washington D.C., Boston, Las Vegas, Seattle, Miami, San Diego',
+	'The U.S. is a country of 50 states covering a vast swath of North America, with Alaska in the northwest and Hawaii extending the nation’s presence into the Pacific Ocean.',
+	'6/6',
+	42000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1003',
+	'New York, San Francisco, Las Vegas, Seattle, Miami, San Diego',
+	'The U.S. is a country of 50 states covering a vast swath of North America, with Alaska in the northwest and Hawaii extending the nation’s presence into the Pacific Ocean.',
+	'5/4',
+	42000,
+	'F'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1004',
+	'Auckland, Queenstown, Wellington, Christchurch, Rotorua',
+	'New Zealand is an island country in the southwestern Pacific Ocean. It consists of two main landmasses—the North Island and the South Island.',
+	'7/6',
+	52000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1004',
+	'Piopiotahi, Dunedin, Bay Of Islands, Nelson',
+	'New Zealand is an island country in the southwestern Pacific Ocean. It consists of two main landmasses—the North Island and the South Island.',
+	'5/4',
+	48000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1004',
+	'Auckland, Queenstown, Wellington, Piopiotahi, Dunedin, Nelson',
+	'New Zealand is an island country in the southwestern Pacific Ocean. It consists of two main landmasses—the North Island and the South Island.',
+	'8/7',
+	68000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1005',
+	'Cape Town, Marrakesh, Cairo, Tenerife, Johannesburg, Madeira, Nairobi, Lanzarote, Gran Canaria',
+	'Africa is the world''s second-largest and second-most populous continent, after Asia in both cases.',
+	'9/8',
+	38000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1005',
+	'Cape Town, Cairo, Tenerife, Johannesburg, Nairobi, Lanzarote',
+	'Africa is the world''s second-largest and second-most populous continent, after Asia in both cases.',
+	'5/4',
+	44000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1005',
+	'Johannesburg, Madeira, Nairobi, Lanzarote, Gran Canaria',
+	'Africa is the world''s second-largest and second-most populous continent, after Asia in both cases.',
+	'6/5',
+	28000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1006',
+	'Wokha, Tuensang, Phek, Kiphire',
+	'Nagaland is a mountainous state in northeast India, bordering Myanmar. It''s home to diverse indigenous tribes, with festivals and markets celebrating the different tribes'' culture.',
+	'5/4',
+	28000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1006',
+	'Kohima, Dimapur, Phek, Kiphire',
+	'Nagaland is a mountainous state in northeast India, bordering Myanmar. It''s home to diverse indigenous tribes, with festivals and markets celebrating the different tribes'' culture.',
+	'4/3',
+	18000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1006',
+	'Wokha, Tuensang, Dimapur, Phek, Kiphire',
+	'Nagaland is a mountainous state in northeast India, bordering Myanmar. It''s home to diverse indigenous tribes, with festivals and markets celebrating the different tribes'' culture.',
+	'5/4',
+	43000,
+	'T'
 )
 
 
---select * from [dbo].[PackageCategories]
---select * from [dbo].[Packages]
-
+select * from [dbo].[PackageCategories]
+select * from [dbo].[Packages]
+select * from [dbo].[PackageDetails]
+select * from [dbo].[Customers]
 
 --INSERT into [dbo].[Customers] VALUES(
 --	Next value for CustomerSequence,
