@@ -70,11 +70,3 @@ Create table Customers(
     check(SUBSTRING(PackageId, 1, 1) = 'P'),
     check(DateOfBirth < GETDATE())
    )
-
---Drop Stored Procedure if exists, usp_AddCustomerDetails
-
-IF OBJECT_ID('usp_AddCustomerDetails') IS NOT NULL
-	DROP Procedure usp_AddCustomerDetails
-GO
-
---Stored Procedure
