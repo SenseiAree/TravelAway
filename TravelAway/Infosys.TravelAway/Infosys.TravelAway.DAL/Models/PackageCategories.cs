@@ -16,7 +16,6 @@ namespace Infosys.TravelAway.DAL.Models
 
         public string CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public string TypeOfPackage { get; set; }
 
         public virtual ICollection<Packages> Packages { get; set; }
     }

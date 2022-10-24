@@ -9,6 +9,11 @@ namespace Infosys.TravelAway.DAL.Models
 {
     public partial class PackageDetails
     {
+        public PackageDetails()
+        {
+            Customers = new HashSet<Customers>();
+        }
+
         public string PackageDetailsId { get; set; }
         public string PackageId { get; set; }
         public string PlacesToVisit { get; set; }
@@ -18,5 +23,6 @@ namespace Infosys.TravelAway.DAL.Models
         public string Accommodation { get; set; }
 
         public virtual Packages Package { get; set; }
+        public virtual ICollection<Customers> Customers { get; set; }
     }
 }

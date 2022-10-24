@@ -38,21 +38,15 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64B8A6D1C5EC");
+                    .HasName("PK__Customer__A4AE64B863E97921");
 
                 entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID")
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
-                    .HasMaxLength(16)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ContactNumber)
@@ -83,23 +77,30 @@ namespace Infosys.TravelAway.DAL.Models
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PackageId)
-                    .HasMaxLength(5)
+                entity.Property(e => e.PackageDetailsId)
+                    .IsRequired()
+                    .HasMaxLength(6)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(16)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.PackageDetails)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.PackageDetailsId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Customers__Packa__32E0915F");
             });
 
             modelBuilder.Entity<PackageCategories>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
-                    .HasName("PK__PackageC__19093A0B77918A21");
+                    .HasName("PK__PackageC__19093A0B43BEB038");
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UQ__PackageC__8517B2E0DE3F6129")
+                    .HasName("UQ__PackageC__8517B2E0B14C1EA8")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId)
@@ -110,16 +111,12 @@ namespace Infosys.TravelAway.DAL.Models
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.Property(e => e.TypeOfPackage)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<PackageDetails>(entity =>
             {
                 entity.Property(e => e.PackageDetailsId)
-                    .HasMaxLength(5)
+                    .HasMaxLength(6)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Accommodation)
@@ -139,43 +136,64 @@ namespace Infosys.TravelAway.DAL.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.PackageId)
+                    .IsRequired()
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PlacesToVisit)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Package)
                     .WithMany(p => p.PackageDetails)
                     .HasForeignKey(d => d.PackageId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__PackageDe__Packa__2C3393D0");
             });
 
             modelBuilder.Entity<Packages>(entity =>
             {
                 entity.HasKey(e => e.PackageId)
-                    .HasName("PK__Packages__322035CC57ABC4B9");
+                    .HasName("PK__Packages__322035CC86AAFDA6");
 
                 entity.Property(e => e.PackageId)
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CategoryId)
+                    .IsRequired()
                     .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PackageDesc)
+                    .IsRequired()
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PackageName)
                     .IsRequired()
-                    .HasMaxLength(30)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TypeOfPackage)
+                    .HasMaxLength(15)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Packages)
                     .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Packages__Catego__286302EC");
             });
+
+            modelBuilder.HasSequence("CustomerSequence").StartsAt(1000);
+
+            modelBuilder.HasSequence("PackageCategoriesSequence").StartsAt(100);
+
+            modelBuilder.HasSequence("PackageDetailsSequence").StartsAt(1000);
+
+            modelBuilder.HasSequence("PackageSequence").StartsAt(1000);
 
             OnModelCreatingPartial(modelBuilder);
         }

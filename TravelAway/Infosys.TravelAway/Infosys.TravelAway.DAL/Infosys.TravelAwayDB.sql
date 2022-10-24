@@ -166,8 +166,8 @@ INSERT INTO [dbo].[Packages] VALUES(
 	'PC102'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
-	'Buffalo Springs, Texas',
-	'Buffalo Springs is a village in Lubbock County, Texas, United States which is famous for its cultural heritage and pride',
+	'Texas',
+	'Texas is a village in Lubbock County, Texas, United States which is famous for its cultural heritage and pride',
 	'International',
 	'PC103'
 )
@@ -340,6 +340,30 @@ INSERT Into [dbo].[PackageDetails] VALUES(
 	'5/4',
 	43000,
 	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1007',
+	'Austin, Houston, Dallas, San Antonio, El Paso, Galveston',
+	'Texas is a state in the South Central region of the United States.',
+	'5/4',
+	43000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1007',
+	'Austin, San Antonio, El Paso, Galveston',
+	'Texas is a state in the South Central region of the United States.',
+	'6/5',
+	36000,
+	'T'
+),(
+	CONCAT('PD', NEXT VALUE FOR PackageDetailsSequence),
+	'P1007',
+	'Austin, Houston, Dallas, San Antonio',
+	'Texas is a state in the South Central region of the United States.',
+	'4/4',
+	33000,
+	'T'
 )
 
 
@@ -360,3 +384,5 @@ select * from [dbo].[Customers]
 --	'INfosys, Pune',
 --	1
 --	)
+
+--Scaffold-DbContext -Connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
