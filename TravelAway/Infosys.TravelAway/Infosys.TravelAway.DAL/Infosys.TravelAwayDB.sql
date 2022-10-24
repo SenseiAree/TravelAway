@@ -27,10 +27,12 @@ Create table Customers(
     ContactNumber varchar(10) not null,
     DateOfBirth date not null,
     Address varchar(250) not null,
+	PackageId varchar(5), 
     check (Gender In('M', 'F')),
     check(SUBSTRING(ContactNumber, 1, 1) != '0'),
+    check(SUBSTRING(PackageId, 1, 1) = 'P'),
     check(DateOfBirth < GETDATE())
-   
+
    )
 
 
