@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container">
+  <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)" style="background-color:beige;">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <h2>Login</h2>
+        <h6 style="text-align:right;color:dimgrey;font-size:small">All fields are mandatory</h6>
+        <div class="form-group">
+          <div class="col" style="text-align:left">
+            <label>Email Id</label>
+          </div>
+          <div class="col; input-group">
+            <input type="email" name="email" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col" style="text-align:left">
+            <label>Password</label>
+          </div>
+          <div class="col; input-group">
+            <input type="password" name="password" class="form-control">
+          </div>
+        </div>
+        <div class="form-group"  style="text-align:left">
+          <button type="submit" class="btn">Login</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </form>
+</div>
