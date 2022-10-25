@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NabvarComponent } from './nabvar/nabvar.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
@@ -12,10 +11,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
 
     AppComponent,
-    NabvarComponent,
     RegisterComponent,
-    NavbarComponent
-    NabvarComponent,
+    NavbarComponent,
     LoginComponent
   ],
   imports: [
