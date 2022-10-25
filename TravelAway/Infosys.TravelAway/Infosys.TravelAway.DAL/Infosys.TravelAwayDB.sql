@@ -57,7 +57,7 @@ Create table PackageDetails(
 )
 
 Create table Customers(
-	CustomerID int primary key,
+	CustomerID varchar(5) primary key,
 	FirstName varchar(30) not null,
 	LastName varchar(30) not null,
 	EmailId VARCHAR(50) CONSTRAINT [chk_EmailId] CHECK ([EmailId] LIKE '%_@__%.__%') NOT NULL,
@@ -66,7 +66,7 @@ Create table Customers(
     ContactNumber varchar(10) not null,
     DateOfBirth date not null,
     Address varchar(250) not null,
-	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId) not null, 
+	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId), 
     check (Gender In('M', 'F')),
     check(SUBSTRING(ContactNumber, 1, 1) != '0'),
     check(DateOfBirth < GETDATE())
@@ -365,6 +365,51 @@ INSERT Into [dbo].[PackageDetails] VALUES(
 	33000,
 	'T'
 )
+
+--Inserts HardCoded Values for Customers using CustomerSequence
+
+INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES(
+	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+	'Areetra',
+	'Halder',
+	'areetra.halder@infosys.com',
+	'123456',
+	'M',
+	'8881480202',
+	'24-MAY-2000',
+	'Infosys, Pune'
+),(
+	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+	'Sujit',
+	'Debnath',
+	'sujit.debnath@infosys.com',
+	'1285693',
+	'M',
+	'9679852103',
+	'27-OCT-2000',
+	'Kolaghat,West Bengal'
+),(
+	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+	'Vishal',
+	'Shukla',
+	'vishal.shukla03@infosys.com',
+	'1285687',
+	'M',
+	'7376944196',
+	'02-JAN-2000',
+	'Pune,Maharastra'
+),(
+	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+	'Siddartha',
+	'Morri',
+	'venkata.morri@infosys.com',
+	'1285690',
+	'M',
+	'9494258758',
+	'30-JAN-2000',
+	'Pune,Maharastra'
+)
+
 
 
 select * from [dbo].[PackageCategories]
