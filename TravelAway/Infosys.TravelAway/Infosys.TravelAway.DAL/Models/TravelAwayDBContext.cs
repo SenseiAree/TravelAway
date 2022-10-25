@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -30,10 +28,8 @@ namespace Infosys.TravelAway.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
-                var config = builder.Build();
-                var connectionString = config.GetConnectionString("TravelAwayDBConnection");
-                optionsBuilder.UseSqlServer(connectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -42,11 +38,12 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64B863E97921");
+                    .HasName("PK__Customer__A4AE64B8519244AF");
 
                 entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID")
-                    .ValueGeneratedNever();
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -82,7 +79,6 @@ namespace Infosys.TravelAway.DAL.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.PackageDetailsId)
-                    .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false);
 
@@ -94,17 +90,16 @@ namespace Infosys.TravelAway.DAL.Models
                 entity.HasOne(d => d.PackageDetails)
                     .WithMany(p => p.Customers)
                     .HasForeignKey(d => d.PackageDetailsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Customers__Packa__32E0915F");
             });
 
             modelBuilder.Entity<PackageCategories>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
-                    .HasName("PK__PackageC__19093A0B43BEB038");
+                    .HasName("PK__PackageC__19093A0BBF3CCE26");
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UQ__PackageC__8517B2E0B14C1EA8")
+                    .HasName("UQ__PackageC__8517B2E0CA9EA413")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId)
@@ -159,7 +154,7 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Packages>(entity =>
             {
                 entity.HasKey(e => e.PackageId)
-                    .HasName("PK__Packages__322035CC86AAFDA6");
+                    .HasName("PK__Packages__322035CCF48DDF6E");
 
                 entity.Property(e => e.PackageId)
                     .HasMaxLength(5)

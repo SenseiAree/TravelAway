@@ -514,7 +514,7 @@ AS BEGIN
 	BEGIN TRY
 		IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId)
 			return -1
-		ELSE IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId and [UserPassword]=@Password)
+		ELSE IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId and [Password]=@Password)
 			return 0
 		ELSE 
 			return 1
