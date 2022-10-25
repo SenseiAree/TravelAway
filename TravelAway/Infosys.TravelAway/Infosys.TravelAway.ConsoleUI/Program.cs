@@ -12,6 +12,8 @@ namespace Infosys.TravelAway.ConsoleUI
             Draw("TestGetAllCustomers");
             Draw("TestGetAllPackages");
             Draw("TestGetAllPackageDetails");
+            //Draw("TestRegisterCustomer");
+            //Draw("TestGetAllCustomers");
         }
 
 
@@ -84,20 +86,71 @@ namespace Infosys.TravelAway.ConsoleUI
         public static void TestGetAllPackageDetails()
         {
             CustomerRepository customerRepository = new CustomerRepository();
-            
+
             foreach (PackageDetails eachPackageDetail in customerRepository.GetAllPackageDetails())
             {
                 Console.WriteLine("*******************************************");
-                Console.WriteLine("{0,-20}{1,-20}","PackageDetails ID:",eachPackageDetail.PackageDetailsId);
-                Console.WriteLine("{0,-20}{1,-20}","Places to visit:",eachPackageDetail.PlacesToVisit);
-                Console.WriteLine("{0,-20}{1,-20}","Details:",eachPackageDetail.PackageDescription);
-                Console.WriteLine("{0,-20}{1,-20}","Price:",eachPackageDetail.Price);
-                Console.WriteLine("{0,-20}{1,-20}","Days/Night:",eachPackageDetail.DaysAndNight);
-                Console.WriteLine("{0,-20}{1,-20}","Accomodation Availablility:",eachPackageDetail.Accommodation);
+                Console.WriteLine("{0,-20}{1,-20}", "PackageDetails ID:", eachPackageDetail.PackageDetailsId);
+                Console.WriteLine("{0,-20}{1,-20}", "Places to visit:", eachPackageDetail.PlacesToVisit);
+                Console.WriteLine("{0,-20}{1,-20}", "Details:", eachPackageDetail.PackageDescription);
+                Console.WriteLine("{0,-20}{1,-20}", "Price:", eachPackageDetail.Price);
+                Console.WriteLine("{0,-20}{1,-20}", "Days/Night:", eachPackageDetail.DaysAndNight);
+                Console.WriteLine("{0,-20}{1,-20}", "Accomodation Availablility:", eachPackageDetail.Accommodation);
                 Console.WriteLine("*******************************************");
             }
         }
 
+        #endregion
+        #region TestRegisterCustomer
+        public static void TestRegisterCustomer()
+        {
+            Customers customers = new Customers
+            {
+                FirstName = "Rebecca",
+                LastName = "Matthew",
+                ContactNumber = "1234567890",
+                Address = "Indonesia",
+                EmailId = "rebecca.mathew@gmail.com",
+                Gender = "F",
+                Password = "rebeccaMatthew",
+                DateOfBirth = new DateTime(2000, 05, 25)
+            };
+            CustomerRepository customerRepository = new CustomerRepository();
+            int returnValue = customerRepository.RegisterCustomer(customers);
+            switch (returnValue)
+            {
+                case 1:
+                    Console.WriteLine("Successfully Added");
+                    break;
+                case -1:
+                    Console.WriteLine("FirstName format is not matched");
+                    break;
+                case -2:
+                    Console.WriteLine("LastName format is not matched");
+                    break;
+                case -3:
+                    Console.WriteLine("Email format is not matched");
+                    break;
+                case -4:
+                    Console.WriteLine("Password format is not matched");
+                    break;
+                case -5:
+                    Console.WriteLine("ContactNumber format is not matched");
+                    break;
+                case -6:
+                    Console.WriteLine("Date format is not matched");
+                    break;
+                case -99:
+                    Console.WriteLine("Error Found in Stored Procedure");
+                    break;
+                
+             
+                default:
+                    Console.WriteLine("Some error occurred.");
+                    break;
+            }
+
+        }
         #endregion
 
         public static void Draw(string functionName)
@@ -116,6 +169,9 @@ namespace Infosys.TravelAway.ConsoleUI
                     break;
                 case "TestGetAllPackageDetails":
                     TestGetAllPackageDetails();
+                    break;
+                case "TestRegisterCustomer":
+                    TestRegisterCustomer();
                     break;
                 default:
                     Console.WriteLine("Invalid Function Name selected");

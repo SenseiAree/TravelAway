@@ -430,6 +430,10 @@ INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gen
 --	1
 --	)
 
+IF OBJECT_ID('usp_RegisterCustomer') IS NOT NULL
+	DROP TABLE usp_RegisterCustomer
+GO
+
 GO
 CREATE Procedure usp_RegisterCustomer (
     @FirstName varchar(30),
@@ -439,8 +443,7 @@ CREATE Procedure usp_RegisterCustomer (
 	@Gender char(1),
     @ContactNumber varchar(10),
     @DateOfBirth date ,
-    @Address varchar(250),
-	@PackageDetailsID varchar(6)
+    @Address varchar(250)
 	)
 	AS
 		BEGIN 
@@ -460,7 +463,7 @@ CREATE Procedure usp_RegisterCustomer (
 			   		SET @ReturnVal=-6
 					ELSE 
 					  BEGIN
-						IF(@PackageDetailsID IS NULL)
+						
 							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),
@@ -473,21 +476,8 @@ CREATE Procedure usp_RegisterCustomer (
 							  @DateOfBirth,
 							  @Address
 							  )
-						ELSE IF(@PackageDetailsID IS NOT NULL)
-							INSERT INTO [dbo].[Customers] VALUES
-							  (
-							  CONCAT('C' ,Next value for CustomerSequence),
-							  @FirstName,
-							  @LastName,
-							  @EmailId,
-							  @Password,
-							  @Gender,
-							  @ContactNumber,
-							  @DateOfBirth,
-							  @Address,
-							  @PackageDetailsID
-							  )
-						SET @ReturnVal=1
+						
+							SET @ReturnVal=1
 					  END
 					SELECT @ReturnVal
 				END TRY
@@ -505,6 +495,10 @@ GO
 
 
 --select * from [dbo].[Customers]
+
+IF OBJECT_ID('usp_Login') IS NOT NULL
+	DROP TABLE usp_Login
+GO
 
 CREATE PROCEDURE usp_Login(
 @EmailId VARCHAR(50),
@@ -526,6 +520,6 @@ AS BEGIN
 END
 GO
 
-Declare @returnval int
-EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
-Select @returnval
+--Declare @returnval int
+--EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
+--Select @returnval

@@ -84,11 +84,12 @@ namespace Infosys.TravelAway.DAL
 
         #endregion
 
+        //select @username, @password from database where username = 'Areetra' --' and password = @password
+
         #region RegisterCustomer
 
         public int RegisterCustomer(Customers customers)
         {
-            string packageDetails = null;
             SqlParameter prmFirstName = new SqlParameter("@FirstName", customers.FirstName);
             SqlParameter prmLastName = new SqlParameter("@LastName", customers.LastName);
             SqlParameter prmEmailId = new SqlParameter("@EmailId", customers.EmailId);
@@ -97,7 +98,6 @@ namespace Infosys.TravelAway.DAL
             SqlParameter prmContactNumber = new SqlParameter("@ContactNumber", customers.ContactNumber);
             SqlParameter prmDateOfBirth = new SqlParameter("@DateOfBirth", customers.DateOfBirth);
             SqlParameter prmAddress = new SqlParameter("@Address", customers.Address);
-            SqlParameter prmPackageDetailsID = new SqlParameter("@PackageDetailsID", packageDetails);
 
             SqlParameter prmReturnValue = new SqlParameter("@ReturnValue", System.Data.SqlDbType.Int)
             {
@@ -107,15 +107,15 @@ namespace Infosys.TravelAway.DAL
             int returnVal;
             try
             {
-                var temp = this._dBContext.Database.ExecuteSqlRaw("EXEC @ReturnValue = [usp_RegisterCustomer] @FirstName, @LastName, @EmailId, @Password, @Gender, @ContactNumber, @DateOfBirth, @Address, @PackageDetailsID"
+                var temp = this._dBContext.Database.ExecuteSqlRaw(
+                    "EXEC @ReturnValue = usp_RegisterCustomer @FirstName, @LastName, @EmailId, @Password, @Gender, @ContactNumber, @DateOfBirth, @Address"
                     , prmReturnValue, prmFirstName, prmLastName, prmEmailId, prmPassword
-                    , prmGender, prmContactNumber, prmDateOfBirth, prmAddress, prmPackageDetailsID);
+                    , prmGender, prmContactNumber, prmDateOfBirth, prmAddress);
                 returnVal = Convert.ToInt32(prmReturnValue.Value);
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message,e.ToString());
                 returnVal = -99;
             }
             
