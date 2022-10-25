@@ -3,10 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NabvarComponent } from './nabvar/nabvar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+
+    AppComponent,
+    NabvarComponent
   ],
   imports: [
     BrowserModule,
