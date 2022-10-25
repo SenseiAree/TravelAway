@@ -412,10 +412,10 @@ INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gen
 
 
 
-select * from [dbo].[PackageCategories]
-select * from [dbo].[Packages]
-select * from [dbo].[PackageDetails]
-select * from [dbo].[Customers]
+--select * from [dbo].[PackageCategories]
+--select * from [dbo].[Packages]
+--select * from [dbo].[PackageDetails]
+--select * from [dbo].[Customers]
 
 --INSERT into [dbo].[Customers] VALUES(
 --	Next value for CustomerSequence,
@@ -430,4 +430,78 @@ select * from [dbo].[Customers]
 --	1
 --	)
 
---Scaffold-DbContext -Connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+GO
+CREATE Procedure usp_RegisterCustomer (
+    @FirstName varchar(30),
+	@LastName varchar(30),
+	@EmailId VARCHAR(50),
+	@Password varchar(16),
+	@Gender char(1),
+    @ContactNumber varchar(10),
+    @DateOfBirth date ,
+    @Address varchar(250),
+	@PackageDetailsID varchar(6)
+	)
+	AS
+		BEGIN 
+	      DECLARE @ReturnVal INT
+			   BEGIN TRY
+				   IF(@FirstName LIKE('%[^a-zA-Z]%') OR LEN(@FirstName)=0)
+					SET @ReturnVal=-1
+				   ELSE IF(@LastName LIKE('%[^a-zA-Z]%') OR LEN(@LastName)=0)
+					SET @ReturnVal=-2
+				   ELSE IF(LEN(@EmailId)<8 OR LEN(@EmailId) IS NULL)
+					SET @ReturnVal=-3
+				   ELSE IF(LEN(@Password)<8 OR LEN(@Password)>16 OR (@Password IS NULL))
+					SET @ReturnVal=-4
+				   ELSE IF(LEN(@ContactNumber)>10 OR LEN(@ContactNumber)<10)
+					SET @ReturnVal=-5
+				   ELSE IF(@DateOfBirth>=CAST(GETDATE() AS DATE) OR (@DateOfBirth IS NULL))
+			   		SET @ReturnVal=-6
+					ELSE 
+					  BEGIN
+						IF(@PackageDetailsID IS NULL)
+							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES
+							  (
+							  CONCAT('C' ,Next value for CustomerSequence),
+							  @FirstName,
+							  @LastName,
+							  @EmailId,
+							  @Password,
+							  @Gender,
+							  @ContactNumber,
+							  @DateOfBirth,
+							  @Address
+							  )
+						ELSE IF(@PackageDetailsID IS NOT NULL)
+							INSERT INTO [dbo].[Customers] VALUES
+							  (
+							  CONCAT('C' ,Next value for CustomerSequence),
+							  @FirstName,
+							  @LastName,
+							  @EmailId,
+							  @Password,
+							  @Gender,
+							  @ContactNumber,
+							  @DateOfBirth,
+							  @Address,
+							  @PackageDetailsID
+							  )
+						SET @ReturnVal=1
+					  END
+					SELECT @ReturnVal
+				END TRY
+			BEGIN CATCH
+				 SET @ReturnVal=-99
+					SELECT @ReturnVal, ERROR_LINE(), ERROR_MESSAGE()
+			  END CATCH
+	End
+GO
+
+
+--DECLARE @ReturnValue INT
+--EXEC @ReturnValue = [usp_RegisterCustomer] 'Joey','Tribbani','vishalsharma@gmail.com','241522634','M','1100321321','01-JAN-2000','Hinjewadi Phase II',NULL
+
+
+
+--select * from [dbo].[Customers]
