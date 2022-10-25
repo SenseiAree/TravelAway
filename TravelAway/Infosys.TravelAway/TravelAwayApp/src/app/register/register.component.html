@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Registration Form</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="SubmitForm(registerForm)">
+    <div class="form-group">
+      <label>EmailID</label>
+      <input type="text" class="form-control" formControlName="emailId">
+      <p *ngIf="registerForm.controls.emailId.errors?.required &&  registerForm.controls.emailId.touched" class="alert alert-danger">This field is required!</p>
+      <p *ngIf="registerForm.controls.emailId.errors?.minlength &&  registerForm.controls.emailId.touched" class="alert alert-danger">The EmailId is not proper!</p>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password">
+    </div>
+    <div class="form-group">
+      <label>Gender</label>
+      <input type="radio" formControlName="gender" name="gender" value="M" />
+      <label>Male</label>
+      <input type="radio" formControlName="gender" name="gender" value="F" />
+      <label>Female</label>
+    </div>
+    <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" class="form-control" formControlName="dateOfbirth">
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" class="form-control" formControlName="address">
+    </div>
+    <button type="submit">Register User</button>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+  <br />
+</div>
