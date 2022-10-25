@@ -505,3 +505,27 @@ GO
 
 
 --select * from [dbo].[Customers]
+
+CREATE PROCEDURE usp_Login(
+@EmailId VARCHAR(50),
+@Password varchar(16)
+)
+AS BEGIN
+	BEGIN TRY
+		IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId)
+			return -1
+		ELSE IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId and [Password]=@Password)
+			return 0
+		ELSE 
+			return 1
+	END TRY
+	BEGIN CATCH
+		SELECT ERROR_LINE(),ERROR_MESSAGE()
+		return -99
+	END CATCH
+END
+GO
+
+Declare @returnval int
+EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
+Select @returnval

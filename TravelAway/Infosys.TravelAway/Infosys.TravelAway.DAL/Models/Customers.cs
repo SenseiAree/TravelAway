@@ -9,7 +9,7 @@ namespace Infosys.TravelAway.DAL.Models
 {
     public partial class Customers
     {
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailId { get; set; }
