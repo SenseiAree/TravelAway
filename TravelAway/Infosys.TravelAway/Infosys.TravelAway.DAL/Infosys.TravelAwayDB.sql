@@ -30,7 +30,7 @@ GO
 --Scripts to Create Tables
 Create table PackageCategories(
 	CategoryId varchar(5) primary key,
-	CategoryName varchar(20) not null unique,
+	CategoryName varchar(20) not null,
 	CHECK(SUBSTRING(CategoryId,1,2) = 'PC')
 	)
 
@@ -60,7 +60,7 @@ Create table Customers(
 	CustomerID varchar(5) primary key,
 	FirstName varchar(30) not null,
 	LastName varchar(30) not null,
-	EmailId VARCHAR(50) CONSTRAINT [chk_EmailId] CHECK ([EmailId] LIKE '%_@__%.__%') NOT NULL,
+	EmailId VARCHAR(50) CONSTRAINT [chk_EmailId] CHECK ([EmailId] LIKE '%_@__%.__%') NOT NULL UNIQUE,
 	Password varchar(16) not null,
 	Gender char(1) not null,
     ContactNumber varchar(10) not null,
@@ -461,8 +461,10 @@ CREATE Procedure usp_RegisterCustomer (
 					SET @ReturnVal=-5
 				   ELSE IF(@DateOfBirth>=CAST(GETDATE() AS DATE) OR (@DateOfBirth IS NULL))
 			   		SET @ReturnVal=-6
-					ELSE 
-					  BEGIN
+				   ELSE IF(@EmailId NOT IN ((SELECT EmailId FROM [dbo].[Customers])))
+					SET @ReturnVal=-7
+				   ELSE 
+					BEGIN
 							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),

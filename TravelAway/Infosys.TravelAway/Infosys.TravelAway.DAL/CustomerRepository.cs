@@ -103,11 +103,11 @@ namespace Infosys.TravelAway.DAL
             {
                 Direction = System.Data.ParameterDirection.Output
             };
-            
+
             int returnVal;
             try
             {
-                var temp = this._dBContext.Database.ExecuteSqlRaw(
+                int temp = this._dBContext.Database.ExecuteSqlRaw(
                     "EXEC @ReturnValue = usp_RegisterCustomer @FirstName, @LastName, @EmailId, @Password, @Gender, @ContactNumber, @DateOfBirth, @Address"
                     , prmReturnValue, prmFirstName, prmLastName, prmEmailId, prmPassword
                     , prmGender, prmContactNumber, prmDateOfBirth, prmAddress);
@@ -115,11 +115,46 @@ namespace Infosys.TravelAway.DAL
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message,e.ToString());
+                Console.WriteLine(e.Message, e.ToString());
                 returnVal = -99;
             }
-            
+
             return returnVal;
+        }
+
+        #endregion
+
+        #region UpdateCustomer
+
+        public bool UpdateCustomer(Customers customer)
+        {
+            bool returnCase = false;
+            try
+            {
+                Customers customerTobeUpdated = this._dBContext.Customers.Find(customer.CustomerId);
+                if (customerTobeUpdated != null)
+                {
+                    customerTobeUpdated.FirstName = customer.FirstName;
+                    customerTobeUpdated.LastName = customer.LastName;
+                    customerTobeUpdated.EmailId = customer.EmailId;
+                    customerTobeUpdated.Password = customer.Password;
+                    customerTobeUpdated.Gender = customer.Gender;
+                    customerTobeUpdated.ContactNumber = customer.ContactNumber;
+                    customerTobeUpdated.DateOfBirth = customer.DateOfBirth;
+                    customerTobeUpdated.Address = customer.Address;
+
+
+                    this._dBContext.Customers.Update(customerTobeUpdated);
+                    int SaveChanges = this._dBContext.SaveChanges();
+                    returnCase = SaveChanges == 1;
+                }
+            }
+            catch (Exception)
+            {
+
+                returnCase = false;
+            }
+            return returnCase;
         }
 
         #endregion
