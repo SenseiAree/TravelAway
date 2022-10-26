@@ -11,11 +11,11 @@ namespace Infosys.TravelAway.SL.Controllers
     [ApiController]
     public class CustomerController : Controller
     {
-        private readonly CustomerRepository customerRepo;
+        private readonly TravelAwayRepository customerRepo;
 
         public CustomerController()
         {
-            customerRepo = new CustomerRepository();
+            customerRepo = new TravelAwayRepository();
         }
         
 
@@ -85,20 +85,20 @@ namespace Infosys.TravelAway.SL.Controllers
         
         [HttpPost]
         public JsonResult RegisterCustomer(DAL.Models.Customers customer)
-        {
-            bool pass;
+        {           
+            int passCase;
             try
             {
-                int passCase = customerRepo.RegisterCustomer(customer);
-                pass = passCase == 1;
+                passCase = customerRepo.RegisterCustomer(customer);
+                
             }
             catch (Exception)
             {
-                pass = false;
+                passCase = 0;
             }
-
-            return Json(pass);
+            return Json(passCase);
         }
+
 
 
     }
