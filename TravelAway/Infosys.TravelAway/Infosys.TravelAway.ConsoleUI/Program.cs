@@ -8,12 +8,12 @@ namespace Infosys.TravelAway.ConsoleUI
     {
         static void Main(string[] args)
         {
-            Draw("TestGetAllPackageCategories");
-            Draw("TestGetAllCustomers");
-            Draw("TestGetAllPackages");
-            Draw("TestGetAllPackageDetails");
-            //Draw("TestRegisterCustomer");
+            //Draw("TestGetAllPackageCategories");
             //Draw("TestGetAllCustomers");
+            //Draw("TestGetAllPackages");
+            //Draw("TestGetAllPackageDetails");
+            Draw("TestRegisterCustomer");
+            Draw("TestGetAllCustomers");
         }
 
 
@@ -104,7 +104,7 @@ namespace Infosys.TravelAway.ConsoleUI
         #region TestRegisterCustomer
         public static void TestRegisterCustomer()
         {
-            Customers customers = new Customers
+            Customers customers = new Customers()
             {
                 FirstName = "Rebecca",
                 LastName = "Matthew",

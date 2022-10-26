@@ -81,7 +81,24 @@ namespace Infosys.TravelAway.SL.Controllers
             }
             return Json(packageDetails);
         }
+        
+        
+        [HttpPost]
+        public JsonResult RegisterCustomer(DAL.Models.Customers customer)
+        {
+            bool pass;
+            try
+            {
+                int passCase = customerRepo.RegisterCustomer(customer);
+                pass = passCase == 1;
+            }
+            catch (Exception)
+            {
+                pass = false;
+            }
 
+            return Json(pass);
+        }
 
 
     }

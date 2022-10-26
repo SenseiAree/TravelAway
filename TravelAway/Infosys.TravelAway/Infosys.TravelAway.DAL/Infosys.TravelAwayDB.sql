@@ -463,7 +463,6 @@ CREATE Procedure usp_RegisterCustomer (
 			   		SET @ReturnVal=-6
 					ELSE 
 					  BEGIN
-						
 							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),
@@ -475,17 +474,15 @@ CREATE Procedure usp_RegisterCustomer (
 							  @ContactNumber,
 							  @DateOfBirth,
 							  @Address
-							  )
-						
+							  )			
 							SET @ReturnVal=1
-					  END
-					SELECT @ReturnVal
-				END TRY
+					  END					
+			END TRY
 			BEGIN CATCH
-				 SET @ReturnVal=-99
-					SELECT @ReturnVal, ERROR_LINE(), ERROR_MESSAGE()
-			  END CATCH
-	End
+				 SET @ReturnVal=-99				
+			END CATCH
+			Return @ReturnVal
+		End
 GO
 
 
@@ -523,3 +520,5 @@ GO
 --Declare @returnval int
 --EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
 --Select @returnval
+
+select * from [dbo].[Customers]
