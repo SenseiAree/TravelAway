@@ -9,10 +9,12 @@ namespace Infosys.TravelAway.ConsoleUI
         static void Main(string[] args)
         {
             //Draw("TestGetAllPackageCategories");
-            //Draw("TestGetAllCustomers");
             //Draw("TestGetAllPackages");
             //Draw("TestGetAllPackageDetails");
+            Draw("TestGetAllCustomers");
             Draw("TestRegisterCustomer");
+            Draw("TestGetAllCustomers");
+            Draw("TestUpdateCustomer");
             Draw("TestGetAllCustomers");
         }
 
@@ -21,13 +23,13 @@ namespace Infosys.TravelAway.ConsoleUI
 
         public static void TestGetAllCustomers()
         {
-            CustomerRepository customerRepository = new CustomerRepository();
-            Console.WriteLine(@"{0,-20}{1,-20}{2,-20}{3,-20}", "Customer ID", "FirstName", "LastName", "Email ID");
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
+            Console.WriteLine(@"{0,-20}{1,-20}{2,-20}{3,-30}{4,-20}", "Customer ID", "FirstName", "LastName", "Email ID","Address");
             try
             {
                 foreach (Customers eachCustomer in customerRepository.GetAllCustomers())
                 {
-                    Console.WriteLine(@"{0,-20}{1,-20}{2,-20}{3,-20}", eachCustomer.CustomerId, eachCustomer.FirstName, eachCustomer.LastName, eachCustomer.EmailId);
+                    Console.WriteLine(@"{0,-20}{1,-20}{2,-20}{3,-30}{4,-20}", eachCustomer.CustomerId, eachCustomer.FirstName, eachCustomer.LastName, eachCustomer.EmailId, eachCustomer.Address);
                 }
 
             }
@@ -42,7 +44,7 @@ namespace Infosys.TravelAway.ConsoleUI
         #region TestGetAllPackageCategories
         public static void TestGetAllPackageCategories()
         {
-            CustomerRepository customerRepository = new CustomerRepository();
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
             Console.WriteLine(@"{0,-20}{1,-20}", "Category ID", "Category Name");
             try
             {
@@ -64,7 +66,7 @@ namespace Infosys.TravelAway.ConsoleUI
 
         public static void TestGetAllPackages()
         {
-            CustomerRepository customerRepository = new CustomerRepository();
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
             Console.WriteLine(@"{0,-20}{1,-20}{2,-20}", "Package ID", "Package Name", "Type of Package");
             try
             {
@@ -85,7 +87,7 @@ namespace Infosys.TravelAway.ConsoleUI
 
         public static void TestGetAllPackageDetails()
         {
-            CustomerRepository customerRepository = new CustomerRepository();
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
 
             foreach (PackageDetails eachPackageDetail in customerRepository.GetAllPackageDetails())
             {
@@ -115,7 +117,7 @@ namespace Infosys.TravelAway.ConsoleUI
                 Password = "rebeccaMatthew",
                 DateOfBirth = new DateTime(2000, 05, 25)
             };
-            CustomerRepository customerRepository = new CustomerRepository();
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
             int returnValue = customerRepository.RegisterCustomer(customers);
             switch (returnValue)
             {
@@ -140,17 +142,57 @@ namespace Infosys.TravelAway.ConsoleUI
                 case -6:
                     Console.WriteLine("Date format is not matched");
                     break;
+                case -7:
+                    Console.WriteLine("Email already exists");
+                    break;
                 case -99:
                     Console.WriteLine("Error Found in Stored Procedure");
                     break;
-                
-             
+
+
                 default:
                     Console.WriteLine("Some error occurred.");
                     break;
             }
 
         }
+        #endregion
+        #region TestUpdateCustomer
+        public static void TestUpdateCustomer()
+        {
+            Customers customers = new Customers()
+            {
+                CustomerId = "C1004",
+                FirstName = "Rebecca",
+                LastName = "Matthew",
+                ContactNumber = "1234567890",
+                Address = "Infosys, Pune",
+                EmailId = "rebecca.mathew@gmail.com",
+                Gender = "F",
+                Password = "rebeccaMatthew",
+                DateOfBirth = new DateTime(2000, 05, 25)
+            };
+            TravelAwayRepository customerRepository = new TravelAwayRepository();
+            bool testCase;
+            try
+            {
+
+                testCase = customerRepository.UpdateCustomer(customers);
+                if (testCase)
+                {
+                    Console.WriteLine("Address of Rebecca Updated Successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Updation Failed");
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Some error occured in TestUpdateFunction");
+            }
+        }
+
         #endregion
 
         public static void Draw(string functionName)
@@ -172,6 +214,9 @@ namespace Infosys.TravelAway.ConsoleUI
                     break;
                 case "TestRegisterCustomer":
                     TestRegisterCustomer();
+                    break;
+                case "TestUpdateCustomer":
+                    TestUpdateCustomer();
                     break;
                 default:
                     Console.WriteLine("Invalid Function Name selected");

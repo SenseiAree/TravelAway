@@ -66,7 +66,12 @@ Create table Customers(
     ContactNumber varchar(10) not null,
     DateOfBirth date not null,
     Address varchar(250) not null,
-	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId), 
+	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId),
+
+	Sys_DateOfJoining datetime,
+	Sys_LastLogin datetime,
+	Sys_LogoutTime datetime,
+
     check (Gender In('M', 'F')),
     check(SUBSTRING(ContactNumber, 1, 1) != '0'),
     check(DateOfBirth < GETDATE())
@@ -461,11 +466,11 @@ CREATE Procedure usp_RegisterCustomer (
 					SET @ReturnVal=-5
 				   ELSE IF(@DateOfBirth>=CAST(GETDATE() AS DATE) OR (@DateOfBirth IS NULL))
 			   		SET @ReturnVal=-6
-				   ELSE IF(@EmailId NOT IN ((SELECT EmailId FROM [dbo].[Customers])))
+				   ELSE IF(@EmailId IN ((SELECT EmailId FROM [dbo].[Customers])))
 					SET @ReturnVal=-7
 				   ELSE 
 					BEGIN
-							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES
+							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address,Sys_DateOfJoining) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),
 							  @FirstName,
@@ -475,7 +480,8 @@ CREATE Procedure usp_RegisterCustomer (
 							  @Gender,
 							  @ContactNumber,
 							  @DateOfBirth,
-							  @Address
+							  @Address,
+							  GETDATE()
 							  )			
 							SET @ReturnVal=1
 					  END					
@@ -505,12 +511,15 @@ CREATE PROCEDURE usp_Login(
 )
 AS BEGIN
 	BEGIN TRY
-		IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId)
+		IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [dbo].[Customers].[EmailId] = @EmailId)
 			return -1
-		ELSE IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId]=@EmailId and [Password]=@Password)
+		ELSE IF NOT EXISTS(select [EmailId] from [dbo].[Customers] where [EmailId] = @EmailId and [Password] = @Password)
 			return 0
-		ELSE 
-			return 1
+		ELSE
+			BEGIN
+				UPDATE [dbo].[Customers] SET Sys_LastLogin = GETDATE() WHERE [dbo].[Customers].[EmailId] = @EmailId and [dbo].[Customers].[Password] = @Password
+				return 1
+			END
 	END TRY
 	BEGIN CATCH
 		SELECT ERROR_LINE(),ERROR_MESSAGE()
@@ -519,8 +528,35 @@ AS BEGIN
 END
 GO
 
+Create procedure usp_Logout(
+	@CustomerID VARCHAR(6)
+)AS
+	BEGIN
+		BEGIN TRY
+			IF EXISTS(SELECT [CustomerID] FROM [dbo].[Customers] WHERE [dbo].[Customers].[CustomerID] = @CustomerID)
+				BEGIN
+					UPDATE [dbo].[Customers] SET [Sys_LogoutTime] = GETDATE() WHERE [dbo].[Customers].[CustomerID] = @CustomerID
+					RETURN 1
+				END
+			ELSE
+				RETURN 0
+		END TRY
+		BEGIN CATCH
+			RETURN -1
+		END CATCH
+	END
+GO
+
 --Declare @returnval int
 --EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
 --Select @returnval
 
+
+--Declare @returnval2 int
+--EXEC @returnval2 = [usp_Logout] 'C1003'
+--Select @returnval2
+
 select * from [dbo].[Customers]
+
+--Scaffold-DbContext -Connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+--Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False

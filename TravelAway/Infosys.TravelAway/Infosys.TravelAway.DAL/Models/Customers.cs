@@ -19,6 +19,9 @@ namespace Infosys.TravelAway.DAL.Models
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public string PackageDetailsId { get; set; }
+        public DateTime? SysDateOfJoining { get; set; }
+        public DateTime? SysLastLogin { get; set; }
+        public DateTime? SysLogoutTime { get; set; }
 
         public virtual PackageDetails PackageDetails { get; set; }
     }

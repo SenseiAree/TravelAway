@@ -11,11 +11,11 @@ namespace Infosys.TravelAway.SL.Controllers
     [ApiController]
     public class CustomerController : Controller
     {
-        private readonly CustomerRepository customerRepo;
+        private readonly TravelAwayRepository customerRepo;
 
         public CustomerController()
         {
-            customerRepo = new CustomerRepository();
+            customerRepo = new TravelAwayRepository();
         }
         
 

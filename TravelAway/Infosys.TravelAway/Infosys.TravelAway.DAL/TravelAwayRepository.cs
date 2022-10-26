@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Infosys.TravelAway.DAL
 {
-    public class CustomerRepository
+    public class TravelAwayRepository
     {
         private readonly TravelAwayDBContext _dBContext;
-        public CustomerRepository()
+        public TravelAwayRepository()
         {
             this._dBContext = new TravelAwayDBContext();
         }
@@ -83,8 +83,6 @@ namespace Infosys.TravelAway.DAL
         }
 
         #endregion
-
-        //select @username, @password from database where username = 'Areetra' --' and password = @password
 
         #region RegisterCustomer
 
@@ -159,6 +157,81 @@ namespace Infosys.TravelAway.DAL
 
         #endregion
 
+        #region LoginCustomer
+
+        public int LoginCustomer(string emailId, string password)
+        {
+            SqlParameter prmEmailId = new SqlParameter("@EmailId", emailId);
+            SqlParameter prmPassword = new SqlParameter("@Password", password);
+
+            SqlParameter prmReturnValue = new SqlParameter("@ReturnValue", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+
+            int returnValue;
+            try
+            {
+                int temp = _dBContext.Database.ExecuteSqlRaw("EXEC @ReturnValue = [usp_Login] @EmailId, @Password", prmReturnValue, prmEmailId, prmPassword);
+                returnValue = Convert.ToInt32(prmReturnValue.Value);
+            }
+            catch (Exception)
+            {
+                returnValue = -99;
+            }
+            return returnValue;
+        }
+
+        #endregion
+
+        #region LogoutCustomer
+
+        public bool LogoutCustomer(string customerId)
+        {
+            bool status = false;
+            try
+            {
+                Customers customers = _dBContext.Customers.Find(customerId);
+                if (customers != null)
+                {
+                    SqlParameter prmCustomerId = new SqlParameter("@CustomerId", customers.CustomerId);
+
+                    SqlParameter prmReturnValue = new SqlParameter("@ReturnValue", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+
+                    int temp = _dBContext.Database.ExecuteSqlRaw("EXEC @ReturnValue = [usp_Logout] @CustomerId", prmReturnValue, prmCustomerId);
+                    status = Convert.ToInt32(prmReturnValue.Value) == 1;
+                }
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return status;
+        }
+
+        #endregion
+
+
+        //For Self Analysis, if needed.
+        #region DeleteCustomer
+        public bool DeleteCustomer(string CustomerId)
+        {
+            bool status = false;
+            try
+            {
+                Customers temp = _dBContext.Customers.Find(CustomerId);
+                if (temp != null)
+                {
+                    this._dBContext.Remove(temp);
+                    status = true;
+                }
+            }
+            catch (Exception)
+            {
+                status = false;
+                throw;
+            }
+            return status;
+        }
+
+        #endregion
     }
 
 
