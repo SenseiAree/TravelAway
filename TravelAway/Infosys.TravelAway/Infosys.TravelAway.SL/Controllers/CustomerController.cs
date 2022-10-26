@@ -41,7 +41,7 @@ namespace Infosys.TravelAway.SL.Controllers
             List<DAL.Models.PackageCategories> packageCategories;
             try
             {
-                packageCategories = customerRepo.GetAllPackageCategories()
+                packageCategories = customerRepo.GetAllPackageCategories();
             }
             catch (Exception)
             {
@@ -57,7 +57,7 @@ namespace Infosys.TravelAway.SL.Controllers
             List<DAL.Models.Packages> packages;
             try
             {
-                packages = customerRepo.GetAllPackages()
+                packages = customerRepo.GetAllPackages();
             }
             catch (Exception)
             {
@@ -73,7 +73,7 @@ namespace Infosys.TravelAway.SL.Controllers
             List<DAL.Models.PackageDetails> packageDetails;
             try
             {
-                packageDetails = customerRepo.GetAllPackageDetails()
+                packageDetails = customerRepo.GetAllPackageDetails();
             }
             catch (Exception)
             {
@@ -84,26 +84,5 @@ namespace Infosys.TravelAway.SL.Controllers
 
 
 
-
-
-
-
-        // POST api/<CustomerController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
