@@ -30,10 +30,10 @@ GO
 --Scripts to Create Tables
 Create table PackageCategories(
 	CategoryId varchar(5) primary key,
-	CategoryName varchar(20) not null,
+	CategoryName varchar(20) not null unique,
 	CHECK(SUBSTRING(CategoryId,1,2) = 'PC')
 	)
-
+	
 Create table Packages(
 	PackageId varchar(5) primary key,
 	PackageName varchar(60) not null,
