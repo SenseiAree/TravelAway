@@ -1,4 +1,5 @@
 ﻿using Infosys.TravelAway.DAL;
+using Infosys.TravelAway.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Infosys.TravelAway.SL.Controllers
         {
             customerRepo = new TravelAwayRepository();
         }
-        
+
 
         [HttpGet]
         public JsonResult GetAllCustomers()
@@ -34,7 +35,7 @@ namespace Infosys.TravelAway.SL.Controllers
             return Json(customers);
         }
 
-        
+
         [HttpGet]
         public JsonResult GetAllPackageCategories()
         {
@@ -49,8 +50,8 @@ namespace Infosys.TravelAway.SL.Controllers
             }
             return Json(packageCategories);
         }
-        
-        
+
+
         [HttpGet]
         public JsonResult GetAllPackages()
         {
@@ -81,16 +82,16 @@ namespace Infosys.TravelAway.SL.Controllers
             }
             return Json(packageDetails);
         }
-        
-        
+
+
         [HttpPost]
         public JsonResult RegisterCustomer(DAL.Models.Customers customer)
-        {           
+        {
             int passCase;
             try
             {
                 passCase = customerRepo.RegisterCustomer(customer);
-                
+
             }
             catch (Exception)
             {
@@ -99,7 +100,66 @@ namespace Infosys.TravelAway.SL.Controllers
             return Json(passCase);
         }
 
+        [HttpPut]
+        public JsonResult UpdateCustomer(Customers customer)
+        {
+            bool status;
+            try
+            {
+                status = this.customerRepo.UpdateCustomer(customer);
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return Json(status);
+        }
 
+        [HttpGet]
+        public JsonResult LoginCustomer(string emailId, string password)
+        {
+            Customers custReturn;
+            try
+            {
+                custReturn = customerRepo.LoginCustomer(emailId, password);
+            }
+            catch (Exception)
+            {
+                custReturn = null;
+            }
+            return Json(custReturn);
+        }
+
+        [HttpGet]
+        public JsonResult LogoutCustomer(string customerId)
+        {
+            bool status;
+            try
+            {
+                status = customerRepo.LogoutCustomer(customerId);
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return Json(status);
+        }
+
+        //For self analysis
+        [HttpDelete]
+        public JsonResult DeleteCustomer(string customerId)
+        {
+            bool status;
+            try
+            {
+                status = customerRepo.DeleteCustomer(customerId);
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return Json(status);
+        }
 
     }
 }
