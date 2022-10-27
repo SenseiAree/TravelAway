@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div *ngFor="let eachLink of linkOfImages; index as i" [ngClass]="{active: i==0}" class="carousel-item" data-bs-interval="10000">
+      <img [src]="eachLink[0]" style="height: 450px; width: 100%;" class="d-block" alt="Thank you">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="text-light" style="text-shadow: 2px 2px black;">{{eachLink[1]}}</h3>
+        <p class="text-light" style="text-shadow: 2px 2px black;">{{eachLink[2]}}</p>
+        <a class="nav-link" href="#">Know More</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
