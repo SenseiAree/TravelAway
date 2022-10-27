@@ -38,7 +38,11 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64B8519244AF");
+                    .HasName("PK__Customer__A4AE64B829C813BC");
+
+                entity.HasIndex(e => e.EmailId)
+                    .HasName("UQ__Customer__7ED91ACE66931CA3")
+                    .IsUnique();
 
                 entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID")
@@ -87,19 +91,31 @@ namespace Infosys.TravelAway.DAL.Models
                     .HasMaxLength(16)
                     .IsUnicode(false);
 
+                entity.Property(e => e.SysDateOfJoining)
+                    .HasColumnName("Sys_DateOfJoining")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.SysLastLogin)
+                    .HasColumnName("Sys_LastLogin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.SysLogoutTime)
+                    .HasColumnName("Sys_LogoutTime")
+                    .HasColumnType("date");
+
                 entity.HasOne(d => d.PackageDetails)
                     .WithMany(p => p.Customers)
                     .HasForeignKey(d => d.PackageDetailsId)
-                    .HasConstraintName("FK__Customers__Packa__32E0915F");
+                    .HasConstraintName("FK__Customers__Packa__33D4B598");
             });
 
             modelBuilder.Entity<PackageCategories>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
-                    .HasName("PK__PackageC__19093A0BBF3CCE26");
+                    .HasName("PK__PackageC__19093A0B1E791510");
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UQ__PackageC__8517B2E0CA9EA413")
+                    .HasName("UQ__PackageC__8517B2E058958843")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId)
@@ -154,7 +170,7 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Packages>(entity =>
             {
                 entity.HasKey(e => e.PackageId)
-                    .HasName("PK__Packages__322035CCF48DDF6E");
+                    .HasName("PK__Packages__322035CC33EAF522");
 
                 entity.Property(e => e.PackageId)
                     .HasMaxLength(5)
