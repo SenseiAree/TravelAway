@@ -1,59 +1,60 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <div class="imagerender">
-      </div>
-      <div class="positioningOfTitle">
-        TravelAway
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <div class="imagerender">
+        </div>
+        <div class="positioningOfTitle">
+          TravelAway
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
 
 
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Packages</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">FAQs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Packages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">FAQs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">
                   <i class="fa-solid fa-language"></i>
                   Language
                 </a>
-            </li>
-            <li><a class="dropdown-item" href="#">
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
                   <i class="fa-solid fa-globe"></i>
-                    Country/Region
-                 </a>
-            </li>
-            <li><a class="dropdown-item" href="#">More</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="text-end"> 
-        <a routerLink ="/login" type="button" class="btn btn-outline-light me-2 textsmall bt">
-          <i class="fa-solid fa-user"></i>
-          Log In
+                  Country/Region
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="#">More</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="text-end">
+          <a routerLink="/login" class="btn btn-outline-light me-2 textsmall bt">
+            <i class="fa-solid fa-user"></i>
+            Log In
 
-        </a>
+          </a>
+        </div>
       </div>
-    </div> 
-  </div>
-</nav>
-
+    </div>
+ </nav>
 
 <router-outlet></router-outlet>
