@@ -185,10 +185,7 @@ namespace Infosys.TravelAway.DAL
                     DateOfBirth = a.DateOfBirth,
                     Address = a.Address,
                     PackageDetails = a.PackageDetails,
-                    PackageDetailsId =a.PackageDetailsId,
-                    SysDateOfJoining = a.SysDateOfJoining,
-                    SysLastLogin = a.SysLastLogin,
-                    SysLogoutTime = a.SysLogoutTime
+                    PackageDetailsId =a.PackageDetailsId,                    
                 }).FirstOrDefault();
             }
             catch (Exception)
