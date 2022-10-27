@@ -68,9 +68,9 @@ Create table Customers(
     Address varchar(250) not null,
 	PackageDetailsId varchar(6) references PackageDetails(PackageDetailsId),
 
-	Sys_DateOfJoining datetime,
-	Sys_LastLogin datetime,
-	Sys_LogoutTime datetime,
+	SysDateOfJoining datetime,
+	SysLastLogin datetime,
+	SysLogoutTime datetime,
 
     check (Gender In('M', 'F')),
     check(SUBSTRING(ContactNumber, 1, 1) != '0'),
@@ -470,7 +470,7 @@ CREATE Procedure usp_RegisterCustomer (
 					SET @ReturnVal=-7
 				   ELSE 
 					BEGIN
-							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address,Sys_DateOfJoining) VALUES
+							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address,SysDateOfJoining) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),
 							  @FirstName,
@@ -517,7 +517,7 @@ AS BEGIN
 			return 0
 		ELSE
 			BEGIN
-				UPDATE [dbo].[Customers] SET Sys_LastLogin = GETDATE() WHERE [dbo].[Customers].[EmailId] = @EmailId and [dbo].[Customers].[Password] = @Password
+				UPDATE [dbo].[Customers] SET [SysLastLogin] = GETDATE() WHERE [dbo].[Customers].[EmailId] = @EmailId and [dbo].[Customers].[Password] = @Password
 				return 1
 			END
 	END TRY
@@ -535,7 +535,7 @@ Create procedure usp_Logout(
 		BEGIN TRY
 			IF EXISTS(SELECT [CustomerID] FROM [dbo].[Customers] WHERE [dbo].[Customers].[CustomerID] = @CustomerID)
 				BEGIN
-					UPDATE [dbo].[Customers] SET [Sys_LogoutTime] = GETDATE() WHERE [dbo].[Customers].[CustomerID] = @CustomerID
+					UPDATE [dbo].[Customers] SET [SysLogoutTime] = GETDATE() WHERE [dbo].[Customers].[CustomerID] = @CustomerID
 					RETURN 1
 				END
 			ELSE
