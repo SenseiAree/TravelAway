@@ -25,10 +25,27 @@
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/regular.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/solid.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/svg-with-js.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/v4-font-face.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/v4-shims.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/v5-font-face.min.css"
+
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/all.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/brands.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/conflict-detection.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/regular.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/solid.min.js",
+              "./node_modules/@fortawesome/fontawesome-free/js/v4-shims.min.js"
             ]
           },
           "configurations": {
