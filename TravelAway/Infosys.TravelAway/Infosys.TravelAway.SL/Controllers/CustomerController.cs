@@ -115,13 +115,13 @@ namespace Infosys.TravelAway.SL.Controllers
             return Json(status);
         }
 
-        [HttpGet]
-        public JsonResult LoginCustomer(string emailId, string password)
+        [HttpPost]
+        public JsonResult LoginCustomer(Customers customers)
         {
             Customers custReturn;
             try
             {
-                custReturn = customerRepo.LoginCustomer(emailId, password);
+                custReturn = customerRepo.LoginCustomer(customers.EmailId, customers.Password);
             }
             catch (Exception)
             {
@@ -130,13 +130,13 @@ namespace Infosys.TravelAway.SL.Controllers
             return Json(custReturn);
         }
 
-        [HttpGet]
-        public JsonResult LogoutCustomer(string customerId)
+        [HttpPost]
+        public JsonResult LogoutCustomer(Customers customers)
         {
             bool status;
             try
             {
-                status = customerRepo.LogoutCustomer(customerId);
+                status = customerRepo.LogoutCustomer(customers.CustomerId);
             }
             catch (Exception)
             {
@@ -147,12 +147,12 @@ namespace Infosys.TravelAway.SL.Controllers
 
         //For self analysis
         [HttpDelete]
-        public JsonResult DeleteCustomer(string customerId)
+        public JsonResult DeleteCustomer(Customers customerId)
         {
             bool status;
             try
             {
-                status = customerRepo.DeleteCustomer(customerId);
+                status = customerRepo.DeleteCustomer(customerId.CustomerId);
             }
             catch (Exception)
             {

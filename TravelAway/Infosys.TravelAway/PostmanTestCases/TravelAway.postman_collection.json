@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "8df01a9e-99ae-4163-9fbe-7a55aaaa4e59",
+		"name": "TravelAway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllCustomers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/GetAllCustomers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"GetAllCustomers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPackageCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/GetAllPackageCategories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"GetAllPackageCategories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPackages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/GetAllPackages",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"GetAllPackages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPackageDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/GetAllPackageDetails",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"GetAllPackageDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterCustomer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"firstName\": \"Areetra\",\n        \"lastName\": \"Halder\",\n        \"emailId\": \"areetra.mutoasis@infosys.com\",\n        \"password\": \"12345786\",\n        \"gender\": \"M\",\n        \"contactNumber\": \"8881480202\",\n        \"dateOfBirth\": \"2000-05-24T00:00:00\",\n        \"address\": \"Infosys, Bangalore\"\n }    "
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/RegisterCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"RegisterCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginCustomer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"emailId\": \"areetra.halder@infosys.com\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/LoginCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"LoginCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCustomer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"customerId\": \"C1000\",\n        \"firstName\": \"Areetra\",\n        \"lastName\": \"Halder\",\n        \"emailId\": \"areetra.halder@infosys.com\",\n        \"password\": \"123456\",\n        \"gender\": \"M\",\n        \"contactNumber\": \"6228337227\",\n        \"dateOfBirth\": \"2000-05-24T00:00:00\",\n        \"address\": \"Infosys, Pune\",\n        \"packageDetailsId\": null,\n        \"sysDateOfJoining\": null,\n        \"sysLastLogin\": null,\n        \"sysLogoutTime\": null,\n        \"packageDetails\": null    \n\t\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/UpdateCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"UpdateCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LogoutCustomer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\": \"C1000\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/LogoutCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"LogoutCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCustomer",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\": \"C1003\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/api/Customer/DeleteCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"api",
+						"Customer",
+						"DeleteCustomer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
