@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <div>
-        <img class ="reverse"src="https://cdn-icons-png.flaticon.com/512/4284/4284034.png" alt="Alternate Text" />
+      <div class="imagerender">
       </div>
-      TravelAway
+      <div class="positioningOfTitle">
+        TravelAway
+      </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Packages</a>
@@ -44,11 +45,11 @@
         </li>
       </ul>
       <div class="text-end"> 
-        <button type="button" class="btn btn-outline-light me-2 textsmall bt">
+        <a routerLink ="/login" type="button" class="btn btn-outline-light me-2 textsmall bt">
           <i class="fa-solid fa-user"></i>
           Log In
 
-        </button>
+        </a>
       </div>
     </div> 
   </div>

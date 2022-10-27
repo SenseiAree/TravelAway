@@ -4,3 +4,19 @@
 div img .reverse{
     background-blend-mode: darken;
 }
+.imagerender {
+  background-image: url(https://cdn-icons-png.flaticon.com/512/4284/4284034.png);
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  display: inline-block;
+  filter: invert(100);
+  position: relative;
+  top: 3px;
+}
+.positioningOfTitle {
+  position: relative;
+  bottom: 5px;
+  display: inline-block;
+  left: 8px;
+}
