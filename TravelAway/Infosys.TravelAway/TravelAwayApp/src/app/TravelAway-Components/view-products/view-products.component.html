@@ -1,1 +1,32 @@
-<p>view-products works!</p>
+<div id="travel-search-section" class="relative page-section">
+  <div class="wrapper">
+    <div class="travelaway-filter">
+      <div class="travelaway-search d-flex">
+        <form class="d-flex justify-content-center" method="get" name="travelaway_search" >
+          <div class="d-flex m-5 justify-content-center">
+            <div>
+              <p>
+                <select name='itinerary_types' id='itinerary_types' class='wp-travel-taxonomy'>
+                  <option value='0' selected='selected'>Trip Type</option>
+                  <option class="level-0" value="adventure">Adventure</option>
+                </select>
+              </p>
+            </div>
+            <div>
+              <p>
+                <select name='travel_locations' id='travel_locations' class='wp-travel-taxonomy'>
+                  <option value='0' selected='selected'>Location</option>
+                  <option class="level-0" value="puno">New York</option>
+                  <option class="level-0" value="cusco">Germany</option>
+                </select>
+              </p>
+            </div>
+            <div>
+              <p class="wp-travel-search"><input type="submit" name="wp-travel_search" id="wp-travel-search" class="button button-primary" value="Search" /></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
+  { path: '#', component: HomeComponent },
   { path: '', component: HomeComponent }
     ];
 
