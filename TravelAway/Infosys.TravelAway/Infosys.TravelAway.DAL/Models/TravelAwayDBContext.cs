@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -28,16 +26,10 @@ namespace Infosys.TravelAway.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("appsettings.json");
-            var config = builder.Build();
-            var connectionString = config.GetConnectionString("TravelAwayDBConnectionString");
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TravelAwayDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -46,10 +38,10 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64B8BF0C80BD");
+                    .HasName("PK__Customer__A4AE64B898CADAEC");
 
                 entity.HasIndex(e => e.EmailId)
-                    .HasName("UQ__Customer__7ED91ACECB0C2DC1")
+                    .HasName("UQ__Customer__7ED91ACE8A911ABF")
                     .IsUnique();
 
                 entity.Property(e => e.CustomerId)
@@ -114,10 +106,10 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<PackageCategories>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
-                    .HasName("PK__PackageC__19093A0B5A3D114C");
+                    .HasName("PK__PackageC__19093A0BBCE28B26");
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UQ__PackageC__8517B2E05F413D55")
+                    .HasName("UQ__PackageC__8517B2E04BB3692F")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId)
@@ -172,7 +164,7 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Packages>(entity =>
             {
                 entity.HasKey(e => e.PackageId)
-                    .HasName("PK__Packages__322035CC7E16AD63");
+                    .HasName("PK__Packages__322035CC8DF8312D");
 
                 entity.Property(e => e.PackageId)
                     .HasMaxLength(5)
