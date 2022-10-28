@@ -2,3 +2,6 @@
   position: relative;
   bottom: 5px;
 }
+.shadowvisibility {
+  text-shadow: 2px 2px black;
+}
