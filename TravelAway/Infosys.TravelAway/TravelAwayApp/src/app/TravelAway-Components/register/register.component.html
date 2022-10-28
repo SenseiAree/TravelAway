@@ -9,27 +9,27 @@
       <div class="modal-body p-5 pt-0">
         <form class="">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="FirstName">
+            <input type="text" class="form-control rounded-3" id="floatingInput" required>
             <label for="floatingInput">FirstName</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="LastName">
+            <input type="text" class="form-control rounded-3" id="floatingInput" required>
             <label for="floatingInput">LastName</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control rounded-3" id="floatingInput" required>
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control rounded-3" id="floatingPassword" required>
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" id="floatingConfirmPassword" placeholder="Password">
+            <input type="password" class="form-control rounded-3" id="floatingConfirmPassword" required>
             <label for="floatingPassword">Confirm Password</label>
           </div>
           <div class="form-floating mb-3 form-group">
-            <select class="form-control" name="gender" #genderRef="ngModel" ngModel required>
+            <select class="form-select" name="gender" required>
               <option value="" disabled selected>--Select Gender--</option>
               <option value="M">Male</option>
               <option value="F">Female</option>
@@ -38,17 +38,15 @@
             <label for="floatingInput">Gender</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="tel" class="form-control rounded-3" id="floatinginput" placeholder="Contact Number">
+            <input pattern="[0-9]{10}" type="tel" class="form-control rounded-3" id="floatinginput" required>
             <label for="floatingInput">Contact Number</label>
-            <!--<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-    <label for="phone">Enter your phone number:</label>-->
           </div>
           <div class="form-floating mb-3">
-            <input type="date" class="form-control rounded-3" id="floatingInput" placeholder="DateOfBirth">
+            <input type="date" class="form-control rounded-3" id="floatingInput" required>
             <label for="floatingInput">DateOfBirth</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="Address">
+            <input type="text" class="form-control rounded-3" id="floatingInput" required>
             <label for="floatingInput">Address</label>
           </div>
           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
