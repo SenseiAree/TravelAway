@@ -46,7 +46,7 @@
       </ul>
       <div class="text-end">
         <a [routerLink] ="eachButtonLink.routerLink" *ngFor="let eachButtonLink of buttonNameAndLinks" class="btn btn-outline-light me-2 textsmall bt" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa-solid fa-user"></i>
+          <i [class]=" 'fa-solid ' + eachButtonLink.buttonClass "></i>
           {{ eachButtonLink.buttonName }}
 
         </a>   
