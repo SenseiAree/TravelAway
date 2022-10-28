@@ -6,11 +6,11 @@
   </div>
   <div class="carousel-inner">
     <div *ngFor="let eachLink of linkOfImages; index as i" [ngClass]="{active: i==0}" class="carousel-item" data-bs-interval="10000">
-      <img [src]="eachLink[0]" style="height: 450px; width: 100%;" class="d-block" alt="Thank you">
+      <img [src]="eachLink[0]" style="height: 450px; width: 100%;" class="d-block" alt="No Images Found">
       <div class="carousel-caption d-none d-md-block">
         <h3 class="text-light" style="text-shadow: 2px 2px black;">{{eachLink[1]}}</h3>
         <p class="text-light" style="text-shadow: 2px 2px black;">{{eachLink[2]}}</p>
-        <a class="nav-link" href="#">Know More</a>
+        <a class="nav-link" style="color:antiquewhite" href="#">Know More</a>
       </div>
     </div>
   </div>
