@@ -9,7 +9,7 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
   linkOfImages = [
-    ["https://i1.wp.com/aucklandandbeyond.co.nz/wp-content/uploads/2017/10/rsz_auckland_city_sunset.jpg?fit=1920%2C1080&ssl=1",
+    ["https://www.newzealand.com/assets/Tourism-NZ/Auckland/1975559ab3/img-1536201939-3159-8823-717CA83C-0811-08A9-5BCA19BBB934D606__aWxvdmVrZWxseQo_FocalPointCropWzQzMCw2MzAsNDAsNjYsNzUsImpwZyIsNjUsMi41XQ.jpg",
       "Auckland",
       "Auckland is a large metropolitan city in the North Island of New Zealand. The most populous urban area in the country and the fifth largest city in Oceania."
     ],
