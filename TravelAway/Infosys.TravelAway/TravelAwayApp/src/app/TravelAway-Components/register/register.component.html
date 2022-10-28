@@ -1,64 +1,9 @@
-<!--<div class="outer">
-  <div class=" container">
-    <div class="row">
-      <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-        <div class=" panel border bg-white">
-          <div class="panel-heading">
-            <h3 class=" pt-3 font-weight-bold">Login</h3>
-          </div>
-          <div class="panel-body p-3">
-            <form>
-              <div class="form-group pt-3">
-                <div class="input-field">
-                  <span class="fa fa-user p-2"></span>-->
-<!--for user icon-->
-<!--<input type="text" placeholder="Firstname" />
-  </div>
-</div>
-<div class="form-group pt-3">
-  <div class="input-field">
-    <span class="fa fa-user p-2"></span>-->
-<!--for user icon-->
-<!--<input type="text" placeholder="Lastname" />
-  </div>
-</div>
-<div class="form-group pt-3">
-  <div class="input-field">
-    <span class="fa fa-user p-2"></span>-->
-<!--for user icon-->
-<!--<input type="text" placeholder="EmailId" />
-  </div>
-</div>
-<div class="form-group pt-3">
-  <div class="input-field">
-    <span class="fa fa-user p-2"></span>-->
-<!--for user icon-->
-<!--<input type="text" placeholder="Username" />
-  </div>
-</div>
-<div class="form-group pt-3">
-  <div class="input-field">
-    <span class="fa fa-lock p-2"></span>-->
-<!--for password icon-->
-<!--<input type="password" placeholder="Password" />
-                </div>
-              </div>
-              <button type="submit" class=" btn btn-primary btn-block mt-4 w-100">SignUp</button>
-              <div class="text-center pt-4 text-muted">Already have accuont? <a id=" forget" routerLink="/login">Login</a></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
-
 <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <h1 class="fw-bold mb-0 fs-2" style="text-align:center"> Sign up</h1>
-        <a routerLink="/home" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+        <a routerLink="/home" class="btn-close" style="height: 10px; width: 10px; position: relative; top: 31px; left: 18%; padding: 5px;" aria-label="Close"></a>
       </div>
 
       <div class="modal-body p-5 pt-0">
@@ -74,10 +19,6 @@
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="UserName">
-            <label for="floatingInput">UserName</label>
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
@@ -110,71 +51,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="container">
-  <h1>Registration Form</h1>
-  <form [formGroup]="registerForm" (ngSubmit)="SubmitForm(registerForm)">
-    <div class="form-group">
-      <label>EmailID</label>
-      <input type="text" class="form-control" formControlName="emailId">
-      <p *ngIf="registerForm.controls.emailId.errors?.required &&  registerForm.controls.emailId.touched" class="alert alert-danger">This field is required!</p>
-      <p *ngIf="registerForm.controls.emailId.errors?.minlength &&  registerForm.controls.emailId.touched" class="alert alert-danger">The EmailId is not proper!</p>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" formControlName="password">
-    </div>
-    <div class="form-group">
-      <label>Gender</label>
-      <input type="radio" formControlName="gender" name="gender" value="M" />
-      <label>Male</label>
-      <input type="radio" formControlName="gender" name="gender" value="F" />
-      <label>Female</label>
-    </div>
-    <div class="form-group">
-      <label>Date of Birth</label>
-      <input type="date" class="form-control" formControlName="dateOfbirth">
-    </div>
-    <div class="form-group">
-      <label>Address</label>
-      <input type="text" class="form-control" formControlName="address">
-    </div>
-    <button type="submit">Register User</button>
-  </form>
-  <div>
-    {{msg}}
-  </div>
-  <br />
-</div>-->
