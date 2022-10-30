@@ -1,5 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { AfterContentInit } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { AfterViewChecked } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PackageCategories } from '../../TravelAway-Interfaces/package-categories';
 import { Packages } from '../../TravelAway-Interfaces/packages';
@@ -16,14 +20,22 @@ export class ViewPackagesComponent implements OnInit {
   PackageCategories: PackageCategories[];
   Packages: Packages[];
   filteredPackages: Packages[];
-  constructor(private _getPackageService: TravelAwayServiceService) { }
+  constructor(private _getPackageService: TravelAwayServiceService, private router: Router) { }    
 
+  categorySelection: string = "All";
   ngOnInit(): void {
+    this.categorySelection = "All";
     this.getPackageCategories();
     this.getPackages();
     this.filteredPackages = this.Packages;
   }
-  categorySelection: string = "All";
+  RouteToLoginOrViewPackages() {
+    if (sessionStorage.getItem("CustomerId") == null) {
+      this.router.navigate(['login']);
+    } else {
+      this.router.navigate(['404Error']);
+    }
+  }
 
   CategorySelected() {
     console.log(this.categorySelection);
@@ -36,11 +48,10 @@ export class ViewPackagesComponent implements OnInit {
         responsePackage => responsePackage.categoryId == this.categorySelection 
       );
     }
-    console.log(this.filteredPackages);
   }
   getPackages() {
     this._getPackageService.GetAllPackages().subscribe(
-      (responseData) => { this.Packages = responseData; },
+      (responseData) => { this.Packages = responseData; this.filteredPackages = responseData; },
       (responseError) => {
         this.errorMsgDivForPackages = responseError;
         console.log(this.errorMsgDivForPackages);

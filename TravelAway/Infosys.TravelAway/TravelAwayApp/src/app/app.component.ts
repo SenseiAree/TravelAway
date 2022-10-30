@@ -8,7 +8,7 @@ import { LoginToHomeInteractionService } from './TravelAway-Services/login-to-ho
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'TravelAway';
   buttonNameAndLinks: IButtonLink[] = [
     { buttonName: "Log In", routerLink: "/login", buttonClass: "fa-user" },
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   ];
   loginDone: boolean;
   FirstName: string;
-  constructor(private _logHomeInteract: LoginToHomeInteractionService) {}
+  constructor(private _logHomeInteract: LoginToHomeInteractionService) { }
   ngOnInit(): void {
     if (sessionStorage.getItem("CustomerId") != null) {
       this.loginDone = true;
@@ -34,5 +34,8 @@ export class AppComponent implements OnInit{
   Logout() {
     this._logHomeInteract.EmitFunction(false);
     sessionStorage.clear();
+  }
+  showDiv(collapser: HTMLDivElement) {
+    collapser.hidden = !collapser.hidden;
   }
 }
