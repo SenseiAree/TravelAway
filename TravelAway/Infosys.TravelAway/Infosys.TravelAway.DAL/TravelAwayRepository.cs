@@ -171,22 +171,29 @@ namespace Infosys.TravelAway.DAL
 
             SqlParameter prmReturnValue = new SqlParameter("@ReturnValue", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
 
-            Customers returningCustomer;
+            Customers returningCustomer = null;
             try
             {
                 int temp = _dBContext.Database.ExecuteSqlRaw("EXEC @ReturnValue = [usp_Login] @EmailId, @Password", prmReturnValue, prmEmailId, prmPassword);
-                returningCustomer = _dBContext.Customers.Where(a => a.EmailId == emailId).Select(a => new Customers() {
-                    CustomerId = a.CustomerId,
-                    FirstName = a.FirstName,
-                    LastName = a.LastName,
-                    EmailId = a.EmailId,
-                    Gender = a.Gender,
-                    ContactNumber = a.ContactNumber,
-                    DateOfBirth = a.DateOfBirth,
-                    Address = a.Address,
-                    PackageDetails = a.PackageDetails,
-                    PackageDetailsId =a.PackageDetailsId,                    
-                }).FirstOrDefault();
+                if (Convert.ToInt32(prmReturnValue.Value) == 1)
+                {
+                    returningCustomer = _dBContext.Customers.Where(a => a.EmailId == emailId).Select(a => new Customers()
+                    {
+                        CustomerId = a.CustomerId,
+                        FirstName = a.FirstName,
+                        LastName = a.LastName,
+                        EmailId = a.EmailId,
+                        Gender = a.Gender,
+                        ContactNumber = a.ContactNumber,
+                        DateOfBirth = a.DateOfBirth,
+                        Address = a.Address,
+                        PackageDetails = a.PackageDetails,
+                        PackageDetailsId = a.PackageDetailsId,
+                        SysDateOfJoining = a.SysDateOfJoining,
+                        SysLastLogin = a.SysLastLogin,
+                        SysLogoutTime = a.SysLogoutTime
+                    }).FirstOrDefault();
+                }
             }
             catch (Exception)
             {

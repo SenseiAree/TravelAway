@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center py-3">
+  <select class="w-25 form-select shadow-lg" #CategorySelection (change)="CategorySelected()" [(ngModel)] ="categorySelection">
+    <option disabled selected>--Select a Category--</option>
+    <option value="All">All</option>
+    <option *ngFor="let eachPackageCategory of PackageCategories" [value]="eachPackageCategory.categoryId">{{ eachPackageCategory.categoryName }}</option>
+  </select>
+</div>
+
+<div class="container py-3 my-3">
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12" *ngFor="let eachPackage of filteredPackages">
+
+      <div class="card">
+        <div class="bg-image hover-zoom">
+          <img [src]="eachPackage.packageAvatar" class="card-img-top hover-overlay ripple" alt="Hollywood Sign on The Hill" />
+        </div>
+        <div class="card-body shadow-lg">
+          <h3 class="card-title">{{ eachPackage.packageName }}</h3>
+          <p class="card-text">
+            {{ eachPackage.packageDesc }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

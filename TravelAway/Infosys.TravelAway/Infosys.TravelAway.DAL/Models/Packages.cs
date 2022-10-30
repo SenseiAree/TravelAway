@@ -17,6 +17,7 @@ namespace Infosys.TravelAway.DAL.Models
         public string PackageId { get; set; }
         public string PackageName { get; set; }
         public string PackageDesc { get; set; }
+        public string PackageAvatar { get; set; }
         public string TypeOfPackage { get; set; }
         public string CategoryId { get; set; }
 

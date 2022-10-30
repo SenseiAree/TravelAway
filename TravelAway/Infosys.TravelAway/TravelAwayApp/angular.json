@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "TravelAwayApp": {
@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
@@ -35,7 +36,6 @@
               "./node_modules/@fortawesome/fontawesome-free/css/v4-font-face.min.css",
               "./node_modules/@fortawesome/fontawesome-free/css/v4-shims.min.css",
               "./node_modules/@fortawesome/fontawesome-free/css/v5-font-face.min.css"
-
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -108,6 +108,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -139,6 +140,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "TravelAwayApp"
 }

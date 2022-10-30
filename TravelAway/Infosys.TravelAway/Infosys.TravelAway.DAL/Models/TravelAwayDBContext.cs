@@ -38,10 +38,10 @@ namespace Infosys.TravelAway.DAL.Models
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64B898CADAEC");
+                    .HasName("PK__Customer__A4AE64B83E5656E0");
 
                 entity.HasIndex(e => e.EmailId)
-                    .HasName("UQ__Customer__7ED91ACE8A911ABF")
+                    .HasName("UQ__Customer__7ED91ACEE6E51ECA")
                     .IsUnique();
 
                 entity.Property(e => e.CustomerId)
@@ -100,16 +100,16 @@ namespace Infosys.TravelAway.DAL.Models
                 entity.HasOne(d => d.PackageDetails)
                     .WithMany(p => p.Customers)
                     .HasForeignKey(d => d.PackageDetailsId)
-                    .HasConstraintName("FK__Customers__Packa__33D4B598");
+                    .HasConstraintName("FK__Customers__Packa__34C8D9D1");
             });
 
             modelBuilder.Entity<PackageCategories>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
-                    .HasName("PK__PackageC__19093A0BBCE28B26");
+                    .HasName("PK__PackageC__19093A0B7ACCFC6B");
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UQ__PackageC__8517B2E04BB3692F")
+                    .HasName("UQ__PackageC__8517B2E05D7576C5")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId)
@@ -158,13 +158,17 @@ namespace Infosys.TravelAway.DAL.Models
                     .WithMany(p => p.PackageDetails)
                     .HasForeignKey(d => d.PackageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PackageDe__Packa__2C3393D0");
+                    .HasConstraintName("FK__PackageDe__Packa__2D27B809");
             });
 
             modelBuilder.Entity<Packages>(entity =>
             {
                 entity.HasKey(e => e.PackageId)
-                    .HasName("PK__Packages__322035CC8DF8312D");
+                    .HasName("PK__Packages__322035CC5A189E6E");
+
+                entity.HasIndex(e => e.PackageAvatar)
+                    .HasName("UQ__Packages__AA7FC7A763959A45")
+                    .IsUnique();
 
                 entity.Property(e => e.PackageId)
                     .HasMaxLength(5)
@@ -173,6 +177,10 @@ namespace Infosys.TravelAway.DAL.Models
                 entity.Property(e => e.CategoryId)
                     .IsRequired()
                     .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PackageAvatar)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PackageDesc)
@@ -193,7 +201,7 @@ namespace Infosys.TravelAway.DAL.Models
                     .WithMany(p => p.Packages)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Packages__Catego__286302EC");
+                    .HasConstraintName("FK__Packages__Catego__29572725");
             });
 
             modelBuilder.HasSequence("CustomerSequence").StartsAt(1000);

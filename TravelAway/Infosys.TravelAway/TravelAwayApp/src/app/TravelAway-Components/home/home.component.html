@@ -1,11 +1,11 @@
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   
   <div class="carousel-inner">
-    <div *ngFor="let eachLink of linkOfImages; index as i" [ngClass]="{active: i==0}" class="carousel-item" data-bs-interval="10000">
-      <img [src]="eachLink[0]" style="height: 500px; width: 100%;" class="d-block" alt="Thank you">
+    <div *ngFor="let eachPackage of Packages; index as i" [ngClass]="{active: i==0}" class="carousel-item" data-bs-interval="10000">
+      <img [src]="eachPackage.packageAvatar" style="height: 500px; width: 100%;" class="d-block" alt="Thank you">
       <div class="carousel-caption d-none d-md-block">
-        <h3 class="text-light shadowvisibility">{{eachLink[1]}}</h3>
-        <p class="text-light shadowvisibility">{{eachLink[2]}}</p>
+        <h3 class="text-light shadowvisibility">{{eachPackage.packageName}}</h3>
+        <p class="text-light shadowvisibility">{{eachPackage.packageDesc}}</p>
         
       </div>
     </div>
@@ -19,3 +19,4 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<app-view-packages></app-view-packages>
