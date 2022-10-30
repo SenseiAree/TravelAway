@@ -9,19 +9,19 @@
         <form class="">
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="Gmail" placeholder="Email address" required>
-            <label for="floatingInput">Email address</label>
+            <label>Email address</label>
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" id="Password" placeholder="Password" required >
-            <label for="floatingPassword">Password</label>
+            <label>Password</label>
           </div>
           <button class=" w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Login</button>
           
           <div class="form-inline fr mt-4">
-            <a id="forget" class=" font-weight-bold">Forget Password?</a>
+            <a id=" forget" routerLink="/signup" >Don't have account? </a>
+            <a id="forget" class="font-weight-bold" style="padding-left:8em;">Forget Password?</a>
             <i class="bi bi-airplane"></i>
           </div>
-          <div class="text-center pt-4 text-muted">Don't have account? <a id=" forget" routerLink="/signup">SignUp</a></div>
         </form>
       </div>
     </div>
