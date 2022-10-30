@@ -38,6 +38,7 @@ Create table Packages(
 	PackageId varchar(5) primary key,
 	PackageName varchar(60) not null,
 	PackageDesc varchar(255) not null,
+	PackageAvatar varchar(255) unique,
 	TypeOfPackage VARCHAR(15) CONSTRAINT chk_TypeOfPackage CHECK(TypeOfPackage IN ('International','Domestic')),
 	CategoryId varchar(5) references PackageCategories(CategoryId) not null,
 	CHECK(SUBSTRING(PackageId,1,1) = 'P')
@@ -131,48 +132,56 @@ INSERT INTO [dbo].[Packages] VALUES(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Andaman & Nicobar',
 	'A set of Island, known for its natural wildlife. Excellent place for water adventures',
+	'https://static.toiimg.com/photo/68814397.cms',
 	'Domestic',
 	'PC101'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'North-East India',
 	'Known as the chicken head of India. A variety of natural life and the local environment make it an awesome place',
+	'https://www.tourmyindia.com/blog//wp-content/uploads/2022/04/Best-Places-to-Visit-in-North-East-India.jpg',
 	'Domestic',
 	'PC104'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Europe',
 	'The fun of all life happens here. From streets to the monuments every thing happens here and its fun loving',
+	'https://www.jetsetter.com//uploads/sites/7/2019/04/GettyImages-529590615-1380x1035.jpg',
 	'International',
 	'PC100'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'America',
 	'The place that never sleeps',
+	'https://media.cntraveler.com/photos/5cc2336031a2ae73ce6fb4df/master/w_4000,h_2667,c_limit/New-York_GettyImages-688899871.jpg',
 	'International',
 	'PC100'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'New Zealand',
 	'The most adventurous place in the world. Very sparsely populated country that makes awesome oppurtunities for adventure',
+	'https://www.internationalcitizens.com/wp-content/uploads/2022/08/iStock-1154591818.jpg',
 	'International',
 	'PC100'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Africa',
 	'Take a deep dive to the earthly forests of Africa and explore the greens',
+	'https://cdn.thecrazytourist.com/wp-content/uploads/2016/04/Durban-South-Africa-1024x597.jpg',
 	'International',
 	'PC104'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Nagaland',
 	'Nagaland is famous for its spiritual holiness and calm environment. The street food are a must to try on.',
+	'https://upload.wikimedia.org/wikipedia/commons/f/ff/Way_o_Kohima%2CNagaland_India.jpg',
 	'Domestic',
 	'PC102'
 ),(
 	CONCAT('P',NEXT VALUE FOR PackageSequence),
 	'Texas',
 	'Texas is a village in Lubbock County, Texas, United States which is famous for its cultural heritage and pride',
+	'https://www.valero.com/sites/default/files/styles/gallery_970x630/public/2020-06/texas_city_location_page_image_gallery_1.jpg?itok=DMrRjx82',
 	'International',
 	'PC103'
 )

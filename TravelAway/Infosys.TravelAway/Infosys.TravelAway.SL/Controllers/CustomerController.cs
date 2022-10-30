@@ -1,5 +1,6 @@
 ﻿using Infosys.TravelAway.DAL;
 using Infosys.TravelAway.DAL.Models;
+using Infosys.TravelAway.SL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -116,12 +117,12 @@ namespace Infosys.TravelAway.SL.Controllers
         }
 
         [HttpPost]
-        public JsonResult LoginCustomer(Customers customers)
+        public JsonResult LoginCustomer(LoginTemplate loginTemplate)
         {
             Customers custReturn;
             try
             {
-                custReturn = customerRepo.LoginCustomer(customers.EmailId, customers.Password);
+                custReturn = customerRepo.LoginCustomer(loginTemplate.EmailId, loginTemplate.Password);
             }
             catch (Exception)
             {
