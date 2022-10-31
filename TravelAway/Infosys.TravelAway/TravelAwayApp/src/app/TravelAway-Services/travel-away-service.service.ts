@@ -15,7 +15,7 @@ import { LoginTemplate } from '../TravelAway-Interfaces/login-template';
 export class TravelAwayServiceService{
 
   constructor(private http: HttpClient) { }
-  private readonly URL: string = "https://localhost:44390/api/Customer/"
+  private readonly URL: string = "https://localhost:44331/api/Customer/"
 
   RegisterCustomer(customer: Customer): Observable<number> {    
     return this.http.post<number>(this.URL+"RegisterCustomer", customer).pipe(catchError(this.errorHandler));
