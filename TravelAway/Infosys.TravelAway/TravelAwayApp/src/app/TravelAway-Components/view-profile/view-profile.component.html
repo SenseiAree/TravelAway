@@ -16,10 +16,10 @@
                   <div *ngIf="!updateInProgress" (click)="EnterUpdationMode(cardbox)">
                     <i class="far fa-edit mx-1 mb-5"></i>
                   </div>
-                  <div *ngIf="updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                  <div *ngIf="updateInProgress" (click)="UpdateUpdationMode(cardbox)">
                     <i class="fa-solid mx-1 fa-check mb-5"></i>
                   </div>
-                  <div *ngIf="updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                  <div *ngIf="updateInProgress" (click)="ExitUpdationMode(cardbox)">
                     <i class="fa-solid mx-1 fa-xmark mb-5"></i>
                   </div>
                 </div>
