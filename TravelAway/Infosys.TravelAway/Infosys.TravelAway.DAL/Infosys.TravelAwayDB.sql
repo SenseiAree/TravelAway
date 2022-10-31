@@ -404,6 +404,16 @@ INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gen
 	'Kolaghat,West Bengal'
 ),(
 	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+	'Sonali',
+	'Patra',
+	'sonali.patra@infosys.com',
+	'1285693',
+	'F',
+	'9274853103',
+	'27-NOV-2000',
+	'Kolaghat,West Bengal'
+),(
+	CONCAT('C', NEXT VALUE FOR CustomerSequence),
 	'Vishal',
 	'Shukla',
 	'vishal.shukla03@infosys.com',

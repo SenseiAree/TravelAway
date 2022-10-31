@@ -8,6 +8,8 @@ import { Customer } from '../../TravelAway-Interfaces/Customer';
 })
 export class ViewProfileComponent implements OnInit {
   temp: string;
+  male: { gender: string, URL: string } = { gender: "M", URL: "https://cdn-icons-png.flaticon.com/512/4139/4139981.png" };
+  female: { gender: string, URL: string } = { gender: "F", URL: "https://cdn-icons-png.flaticon.com/512/4323/4323004.png" };
 
   constructor() { }
   customerProfile: Customer;

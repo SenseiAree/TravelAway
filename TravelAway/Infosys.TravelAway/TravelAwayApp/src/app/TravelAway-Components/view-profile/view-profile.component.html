@@ -6,7 +6,7 @@
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white"
                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-              <img src="https://cdn-icons-png.flaticon.com/512/668/668709.png"
+              <img [src]="customerProfile.gender === 'M'? male.URL : female.URL"
                    alt="Avatar" class="img-fluid my-5" style="width: 160px; border-radius: 50%; box-shadow: 10px 10px 40px 0 #000000" />
               <h5>{{ this.customerProfile.firstName }} {{ this.customerProfile.lastName }}</h5>
               <p>{{ this.customerProfile.address }}</p>

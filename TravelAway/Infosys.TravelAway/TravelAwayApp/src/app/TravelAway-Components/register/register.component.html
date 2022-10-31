@@ -34,18 +34,34 @@
               </div>
             </div>
 
-
           </div>
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #emailIdRef ngModel name="emailId" id="floatingInput" placeholder="Email address" required>
             <label for="floatingInput">Email address</label>
 
+            <div class="container btn-outline-danger btn" style="border: none;" *ngIf="emailIdRef.errors && (emailIdRef.dirty || emailIdRef.touched)">
+              <div [hidden]="!emailIdRef.errors.required">
+                <p>&nbsp;Email ID is mandatory</p>
+              </div>
+              <div [hidden]="!emailIdRef.errors.pattern">
+                <p>&nbsp;Please enter a valid Email.</p>
+              </div>
+            </div>
 
 
           </div> 
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" #passwordRef pattern="[^-\s]+" ngModel name="password" id="floatingPassword" placeholder="Password" required>
             <label for="floatingPassword">Password</label>
+
+            <div class="container btn-outline-danger btn" style="border: none;" *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)">
+              <div [hidden]="!passwordRef.errors.required">
+                <p>&nbsp;Password is mandatory</p>
+              </div>
+            </div>
+
+
+
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" #confirmPasswordRef pattern="[^-\s]" ngModel name="confirmPassword" id="floatingConfirmPassword" placeholder="Confirm Password" required>
@@ -64,7 +80,17 @@
             <input pattern="[0-9]{10}" type="tel" class="form-control rounded-3" #contactNumberRef ngModel name="contactNumber" id="floatinginput" placeholder="Contact Number" required>
             <label for="floatingInput">Contact Number</label>
             <!--<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-            <label for="phone">Enter your phone number:</label>-->
+  <label for="phone">Enter your phone number:</label>-->
+
+            <div class="container btn-outline-danger btn" style="border: none;" *ngIf="contactNumberRef.errors && (contactNumberRef.dirty || contactNumberRef.touched)">
+              <div [hidden]="!contactNumberRef.errors.required">
+                <p>&nbsp;Contact Number is mandatory</p>
+              </div>
+              <div [hidden]="!contactNumberRef.errors.pattern">
+                <p>&nbsp;Contact Number should be of 10 digits.</p>
+              </div>
+            </div>
+
           </div>
           <div class="form-floating mb-3">
             <input type="date" class="form-control rounded-3" #dateOfBirthRef ngModel name="dateOfBirth" id="floatingInput" placeholder="Date Of Birth" required>
@@ -75,6 +101,7 @@
             <label for="floatingInput">Address</label>
           </div>
           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+          <p *ngIf="signupSuccess">Sign up successful. You can now log in.</p>
           <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
           <div class="text-center pt-4 text-muted">Already a User? <a id=" forget" routerLink="/login">Log in here</a></div>
         </form>
