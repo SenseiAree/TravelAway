@@ -1,0 +1,81 @@
+<section class="vh-100">
+  <div class="container-fluid py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-10 mb-4 mb-lg-0">
+        <div class="card mb-3 shadoweffect" #cardbox style="">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://cdn-icons-png.flaticon.com/512/668/668709.png"
+                   alt="Avatar" class="img-fluid my-5" style="width: 160px; border-radius: 50%; box-shadow: 10px 10px 40px 0 #000000" />
+              <h5>{{ this.customerProfile.firstName }} {{ this.customerProfile.lastName }}</h5>
+              <p>{{ this.customerProfile.address }}</p>
+
+              <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-around w-50">
+                  <div *ngIf="!updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                    <i class="far fa-edit mx-1 mb-5"></i>
+                  </div>
+                  <div *ngIf="updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                    <i class="fa-solid mx-1 fa-check mb-5"></i>
+                  </div>
+                  <div *ngIf="updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                    <i class="fa-solid mx-1 fa-xmark mb-5"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Customer ID: {{ this.customerProfile.customerId }}</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-4 mb-3">
+                    <h6>First Name</h6>
+                    <p class="text-muted">{{ this.customerProfile.firstName }}</p>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <h6>Last Name</h6>
+                    <p class="text-muted">{{ this.customerProfile.lastName }}</p>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{ this.customerProfile.emailId }}</p>
+                  </div>
+
+                  <div class="col-4 mb-3">
+                    <h6>Contact Number</h6>
+                    <p class="text-muted">{{ this.customerProfile.contactNumber }}</p>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <h6>Date of Birth</h6>
+                    <p class="text-muted">{{ this.customerProfile.dateOfBirth }}</p>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <h6>Gender</h6>
+                    <p class="text-muted">{{ this.customerProfile.gender }}</p>
+                  </div>
+
+                </div>
+                <h6>Projects</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Recent</h6>
+                    <p class="text-muted">Lorem ipsum</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Most Viewed</h6>
+                    <p class="text-muted">Dolor sit amet</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

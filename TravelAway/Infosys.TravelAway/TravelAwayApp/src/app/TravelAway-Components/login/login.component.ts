@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("CustomerId", this.data.customerId);
           sessionStorage.setItem("FirstName", this.data.firstName);
           sessionStorage.setItem("LastName", this.data.lastName);
+          sessionStorage.setItem("EmailId", this.data.emailId);
           sessionStorage.setItem("Gender", this.data.gender);
           sessionStorage.setItem("Address", this.data.address);
           sessionStorage.setItem("ContactNumber", this.data.contactNumber);
