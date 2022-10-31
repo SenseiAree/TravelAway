@@ -19,3 +19,11 @@ section {
     box-shadow: 0 0 100px 0 #ffc107;
     transition: all 0.5s;
   }
+.inputborderless {
+  border-radius: 5%;
+  border: 0px;
+}
+  .inputborderless:hover {
+    border: 0px;
+    color: #545862;
+  }

@@ -33,28 +33,33 @@
                 <div class="row pt-1">
                   <div class="col-4 mb-3">
                     <h6>First Name</h6>
-                    <p class="text-muted">{{ this.customerProfile.firstName }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.firstName }}</p>
+                    <input class="inputborderless" type="text" name="firstName" [value]="customerProfile.firstName" *ngIf="updateInProgress"/>
                   </div>
                   <div class="col-4 mb-3">
                     <h6>Last Name</h6>
-                    <p class="text-muted">{{ this.customerProfile.lastName }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.lastName }}</p>
+                    <input class="inputborderless" type="text" name="lastName" [value]="customerProfile.lastName" *ngIf="updateInProgress"/>
                   </div>
                   <div class="col-4 mb-3">
                     <h6>Email</h6>
-                    <p class="text-muted">{{ this.customerProfile.emailId }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.emailId }}</p>
+                    <input class="inputborderless" type="text" name="emailId" [value]="customerProfile.emailId" *ngIf="updateInProgress"/>
                   </div>
 
                   <div class="col-4 mb-3">
                     <h6>Contact Number</h6>
-                    <p class="text-muted">{{ this.customerProfile.contactNumber }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.contactNumber }}</p>
+                    <input class="inputborderless" type="text" name="contactNumber" [value]="customerProfile.contactNumber" *ngIf="updateInProgress"/>
                   </div>
                   <div class="col-4 mb-3">
                     <h6>Date of Birth</h6>
-                    <p class="text-muted">{{ this.customerProfile.dateOfBirth }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.dateOfBirth }}</p>
+                    <input class="inputborderless" type="date" name="dateOfBirth" [value]="customerProfile.dateOfBirth" *ngIf="updateInProgress"/>
                   </div>
                   <div class="col-4 mb-3">
                     <h6>Gender</h6>
-                    <p class="text-muted">{{ this.customerProfile.gender }}</p>
+                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.gender }}</p>
                   </div>
 
                 </div>

@@ -7,6 +7,7 @@ import { Customer } from '../../TravelAway-Interfaces/Customer';
   styleUrls: ['./view-profile.component.css']
 })
 export class ViewProfileComponent implements OnInit {
+  temp: string;
 
   constructor() { }
   customerProfile: Customer;
@@ -31,13 +32,16 @@ export class ViewProfileComponent implements OnInit {
   }
   updateInProgress: boolean = false;
   EnterUpdationMode(cardbox: HTMLDivElement) {
+    this.temp = cardbox.style.boxShadow;
     cardbox.style.boxShadow = "0px 0px 100px 0px #dc3545";
     this.updateInProgress = true;
   }
   UpdateUpdationMode(cardbox: HTMLDivElement) {
-
+    cardbox.style.boxShadow = this.temp;
+    this.updateInProgress = false;
   }
   ExitUpdationMode(cardbox: HTMLDivElement) {
+    cardbox.style.boxShadow = this.temp;
     this.updateInProgress = false;
   }
 }
