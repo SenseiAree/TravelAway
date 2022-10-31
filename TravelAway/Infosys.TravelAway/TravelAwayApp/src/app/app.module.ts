@@ -12,6 +12,7 @@ import { FooterComponent } from './TravelAway-Components/footer/footer.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewPackagesComponent } from './TravelAway-Components/view-packages/view-packages.component';
 import { Error404PageNotFoundComponent } from './TravelAway-Components/error404-page-not-found/error404-page-not-found.component';
+import { ViewProfileComponent } from './TravelAway-Components/view-profile/view-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { Error404PageNotFoundComponent } from './TravelAway-Components/error404-
 
     EditProfileComponent,  
 
-    FooterComponent, ViewPackagesComponent, Error404PageNotFoundComponent,
+    FooterComponent, ViewPackagesComponent, Error404PageNotFoundComponent, ViewProfileComponent,
     
   ],
   imports: [

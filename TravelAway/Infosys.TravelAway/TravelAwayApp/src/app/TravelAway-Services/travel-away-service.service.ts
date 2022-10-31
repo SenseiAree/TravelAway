@@ -26,7 +26,7 @@ export class TravelAwayServiceService{
   LoginCustomer(customer: LoginTemplate): Observable<Customer> {
     return this.http.post<Customer>(this.URL + "LoginCustomer", customer).pipe(catchError(this.errorHandler));
   }
-  LogoutCustomer(customer: Customer): Observable<boolean> {
+  LogoutCustomer(customer: { customerId: string }): Observable<boolean> {
     return this.http.post<boolean>(this.URL + "LogoutCustomer", customer).pipe(catchError(this.errorHandler));
   }
   GetAllPackageCategories(): Observable<PackageCategories[]> {

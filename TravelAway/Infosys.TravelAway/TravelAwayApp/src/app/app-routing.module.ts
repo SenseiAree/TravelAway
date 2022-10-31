@@ -4,6 +4,7 @@ import { Error404PageNotFoundComponent } from './TravelAway-Components/error404-
 import { HomeComponent } from './TravelAway-Components/home/home.component';
 import { LoginComponent } from './TravelAway-Components/login/login.component';
 import { RegisterComponent } from './TravelAway-Components/register/register.component';
+import { ViewProfileComponent } from './TravelAway-Components/view-profile/view-profile.component';
 import { LoginAndSignupGuardService } from './TravelAway-Services/login-and-signup-guard.service';
 
 
@@ -13,7 +14,9 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent, canActivate: [LoginAndSignupGuardService] },
   { path: '#', component: HomeComponent },
   { path: '', component: HomeComponent },
+  { path: 'viewProfile', component: ViewProfileComponent },
   { path: '404Error', component: Error404PageNotFoundComponent },
+
   { path: '**', component: Error404PageNotFoundComponent }
     ];
 
