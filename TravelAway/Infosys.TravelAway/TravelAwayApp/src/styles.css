@@ -2,7 +2,8 @@
 @import "~font-awesome/css/font-awesome.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Ebrima, 'Bookman Old Style', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif }
+*{ font-family: Ebrima, cursive; }
 
 /* width */
 ::-webkit-scrollbar {
