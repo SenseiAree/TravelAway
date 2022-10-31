@@ -17,3 +17,11 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+input.ng-invalid.ng-touched {
+  box-shadow: 0 0 10px 0 #dc3545;
+}
+
+input.ng-valid {
+  box-shadow: 0 0 10px 0 #198754;
+}

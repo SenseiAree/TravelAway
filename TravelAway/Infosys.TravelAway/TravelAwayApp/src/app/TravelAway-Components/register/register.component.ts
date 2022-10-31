@@ -15,4 +15,5 @@ export class RegisterComponent implements OnInit {
   RegisterCustomer(signupForm: NgForm) {
     console.log(signupForm);
   }
+  
 }

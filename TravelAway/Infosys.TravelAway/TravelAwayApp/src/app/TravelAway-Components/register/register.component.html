@@ -9,27 +9,50 @@
       <div class="modal-body p-5 pt-0">
         <form class="" #signupForm="ngForm" (ngSubmit)="RegisterCustomer(signupForm)">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" ngModel name="firstName" id="floatingInput" placeholder="First Name" required>
+            <input type="text" class="form-control rounded-3" pattern="[A-Za-z]+" #firstNameRef="ngModel" ngModel name="firstName" id="floatingInput" placeholder="First Name" required>
             <label for="floatingInput">First Name</label>
+
+            <div class="container btn-outline-danger btn" style="border: none;" *ngIf="firstNameRef.errors && (firstNameRef.dirty || firstNameRef.touched)">
+              <div [hidden]="!firstNameRef.errors.required">
+                <p>&nbsp;First Name is mandatory</p>
+              </div>
+              <div [hidden]="!firstNameRef.errors.pattern">
+                <p>&nbsp;First Name should be all alphabetic.</p>
+              </div>
+            </div>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" ngModel name="lastName" id="floatingInput" placeholder="Last Name" required>
+            <input type="text" class="form-control rounded-3" pattern="[A-Za-z]+" #lastNameRef ngModel name="lastName" id="floatingInput" placeholder="Last Name" required>
             <label for="floatingInput">Last Name</label>
+
+            <div class="container btn-outline-danger btn" style="border: none;" *ngIf="lastNameRef.errors && (lastNameRef.dirty || lastNameRef.touched)">
+              <div [hidden]="!lastNameRef.errors.required">
+                <p>&nbsp;Last Name is mandatory</p>
+              </div>
+              <div [hidden]="!lastNameRef.errors.pattern">
+                <p>&nbsp;Last Name should be all alphabetic.</p>
+              </div>
+            </div>
+
+
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" ngModel name="emailId" id="floatingInput" placeholder="Email address" required>
+            <input type="email" class="form-control rounded-3" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #emailIdRef ngModel name="emailId" id="floatingInput" placeholder="Email address" required>
             <label for="floatingInput">Email address</label>
+
+
+
           </div> 
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" ngModel name="password" id="floatingPassword" placeholder="Password" required>
+            <input type="password" class="form-control rounded-3" #passwordRef pattern="[^-\s]+" ngModel name="password" id="floatingPassword" placeholder="Password" required>
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" ngModel name="confirmPassword" id="floatingConfirmPassword" placeholder="Confirm Password" required>
+            <input type="password" class="form-control rounded-3" #confirmPasswordRef pattern="[^-\s]" ngModel name="confirmPassword" id="floatingConfirmPassword" placeholder="Confirm Password" required>
             <label for="floatingPassword">Confirm Password</label>
           </div>
           <div class="form-floating mb-3 form-group">
-            <select class="form-select" ngModel name="gender" required>
+            <select class="form-select" ngModel #genderRef name="gender" required>
               <option value="" disabled selected>--Select Gender--</option>
               <option value="M">Male</option>
               <option value="F">Female</option>
@@ -38,17 +61,17 @@
             <label for="floatingInput">Gender</label>
           </div>
           <div class="form-floating mb-3">
-            <input pattern="[0-9]{10}" type="tel" class="form-control rounded-3" ngModel name="contactNumber" id="floatinginput" placeholder="Contact Number" required>
+            <input pattern="[0-9]{10}" type="tel" class="form-control rounded-3" #contactNumberRef ngModel name="contactNumber" id="floatinginput" placeholder="Contact Number" required>
             <label for="floatingInput">Contact Number</label>
             <!--<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
             <label for="phone">Enter your phone number:</label>-->
           </div>
           <div class="form-floating mb-3">
-            <input type="date" class="form-control rounded-3" ngModel name="dateOfBirth" id="floatingInput" placeholder="Date Of Birth" required>
+            <input type="date" class="form-control rounded-3" #dateOfBirthRef ngModel name="dateOfBirth" id="floatingInput" placeholder="Date Of Birth" required>
             <label for="floatingInput">Date Of Birth</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" ngModel name="address" id="floatingInput" placeholder="Address" required>
+            <input type="text" class="form-control rounded-3" #addressRef ngModel name="address" id="floatingInput" placeholder="Address" required>
             <label for="floatingInput">Address</label>
           </div>
           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
