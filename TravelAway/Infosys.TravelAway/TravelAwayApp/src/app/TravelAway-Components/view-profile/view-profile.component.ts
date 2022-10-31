@@ -34,5 +34,10 @@ export class ViewProfileComponent implements OnInit {
     cardbox.style.boxShadow = "0px 0px 100px 0px #dc3545";
     this.updateInProgress = true;
   }
+  UpdateUpdationMode(cardbox: HTMLDivElement) {
 
+  }
+  ExitUpdationMode(cardbox: HTMLDivElement) {
+    this.updateInProgress = false;
+  }
 }
