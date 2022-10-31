@@ -2,7 +2,7 @@
   
   <div class="carousel-inner">
     <div *ngFor="let eachPackage of Packages; index as i" [ngClass]="{active: i==0}" class="carousel-item" data-bs-interval="10000">
-      <img [src]="eachPackage.packageAvatar" style="height: 600px; width: 100%;" class="d-block" alt="Thank you">
+      <img [src]="eachPackage.packageAvatar" style="height: 630px; width: 100%;" class="d-block" alt="Thank you">
       <div class="carousel-caption d-none d-md-block">
         <h3 class="text-light shadowvisibility">{{eachPackage.packageName}}</h3>
         <p class="text-light shadowvisibility">{{eachPackage.packageDesc}}</p>
