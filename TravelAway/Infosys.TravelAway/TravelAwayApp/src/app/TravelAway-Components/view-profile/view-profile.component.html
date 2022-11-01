@@ -3,82 +3,89 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-10 mb-4 mb-lg-0">
         <div class="card mb-3 shadoweffect" #cardbox style="">
-          <div class="row g-0">
-            <div class="col-md-4 gradient-custom text-center text-white"
-                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-              <img [src]="customerProfile.gender === 'M'? male.URL : female.URL"
-                   alt="Avatar" class="img-fluid my-5" style="width: 160px; border-radius: 50%; box-shadow: 10px 10px 40px 0 #000000" />
-              <h5>{{ this.customerProfile.firstName }} {{ this.customerProfile.lastName }}</h5>
-              <p>{{ this.customerProfile.address }}</p>
+          <form> 
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                   style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img [src]="customerProfile.gender === 'M'? male.URL : female.URL"
+                     alt="Avatar" class="img-fluid my-5" style="width: 160px; border-radius: 50%; box-shadow: 10px 10px 40px 0 #000000" />
+                <h5>{{ this.customerProfile.firstName }} {{ this.customerProfile.lastName }}</h5>
+                <p>{{ this.customerProfile.address }}</p>
 
-              <div class="d-flex justify-content-center">
-                <div class="d-flex justify-content-around w-50">
-                  <div *ngIf="!updateInProgress" (click)="EnterUpdationMode(cardbox)">
-                    <i class="far fa-edit mx-1 mb-5"></i>
+                <div class="d-flex justify-content-center">
+                  <div class="d-flex justify-content-around w-50">
+                    <div *ngIf="!updateInProgress" (click)="EnterUpdationMode(cardbox)">
+                      <i class="far fa-edit mx-1 mb-5"></i>
+                    </div>
+                    <div *ngIf="updateInProgress" (click)="UpdateUpdationMode(cardbox)">
+                      <i class="fa-solid mx-1 fa-check mb-5"></i>
+                    </div>
+                    <div *ngIf="updateInProgress" (click)="ExitUpdationMode(cardbox)">
+                      <i class="fa-solid mx-1 fa-xmark mb-5"></i>
+                    </div>
                   </div>
-                  <div *ngIf="updateInProgress" (click)="UpdateUpdationMode(cardbox)">
-                    <i class="fa-solid mx-1 fa-check mb-5"></i>
+                </div>
+
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Customer ID: {{ this.customerProfile.customerId }}</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-4 mb-3">
+                      <h6>First Name</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.firstName }}</p>
+                      <input class="inputborderless" type="text" name="firstName" [value]="customerProfile.firstName" *ngIf="updateInProgress" />
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Last Name</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.lastName }}</p>
+                      <input class="inputborderless" type="text" name="lastName" [value]="customerProfile.lastName" *ngIf="updateInProgress" />
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.emailId }}</p>
+                      <input class="inputborderless" type="text" name="emailId" [value]="customerProfile.emailId" *ngIf="updateInProgress" />
+                    </div>
+
+                    <div class="col-4 mb-3">
+                      <h6>Contact Number</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.contactNumber }}</p>
+                      <input class="inputborderless" type="text" name="contactNumber" [value]="customerProfile.contactNumber" *ngIf="updateInProgress" />
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Date of Birth</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.dateOfBirth }}</p>
+                      <input class="inputborderless" type="date" name="dateOfBirth" [value]="customerProfile.dateOfBirth" *ngIf="updateInProgress" />
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Gender</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.gender }}</p>
+                      <select *ngIf="updateInProgress" name="gender" required>
+                        <option value="" disabled>--Select Gender--</option>
+                        <option value="M" [selected]="this.customerProfile.gender === 'M'">Male</option>
+                        <option value="F" [selected]="this.customerProfile.gender === 'F'">Female</option>
+                      </select>
+                    </div>
+
                   </div>
-                  <div *ngIf="updateInProgress" (click)="ExitUpdationMode(cardbox)">
-                    <i class="fa-solid mx-1 fa-xmark mb-5"></i>
+                  <h6>Projects</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Recent</h6>
+                      <p class="text-muted">Lorem ipsum</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Most Viewed</h6>
+                      <p class="text-muted">Dolor sit amet</p>
+                    </div>
                   </div>
+
                 </div>
               </div>
-
             </div>
-            <div class="col-md-8">
-              <div class="card-body p-4">
-                <h6>Customer ID: {{ this.customerProfile.customerId }}</h6>
-                <hr class="mt-0 mb-4">
-                <div class="row pt-1">
-                  <div class="col-4 mb-3">
-                    <h6>First Name</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.firstName }}</p>
-                    <input class="inputborderless" type="text" name="firstName" [value]="customerProfile.firstName" *ngIf="updateInProgress"/>
-                  </div>
-                  <div class="col-4 mb-3">
-                    <h6>Last Name</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.lastName }}</p>
-                    <input class="inputborderless" type="text" name="lastName" [value]="customerProfile.lastName" *ngIf="updateInProgress"/>
-                  </div>
-                  <div class="col-4 mb-3">
-                    <h6>Email</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.emailId }}</p>
-                    <input class="inputborderless" type="text" name="emailId" [value]="customerProfile.emailId" *ngIf="updateInProgress"/>
-                  </div>
-
-                  <div class="col-4 mb-3">
-                    <h6>Contact Number</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.contactNumber }}</p>
-                    <input class="inputborderless" type="text" name="contactNumber" [value]="customerProfile.contactNumber" *ngIf="updateInProgress"/>
-                  </div>
-                  <div class="col-4 mb-3">
-                    <h6>Date of Birth</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.dateOfBirth }}</p>
-                    <input class="inputborderless" type="date" name="dateOfBirth" [value]="customerProfile.dateOfBirth" *ngIf="updateInProgress"/>
-                  </div>
-                  <div class="col-4 mb-3">
-                    <h6>Gender</h6>
-                    <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.gender }}</p>
-                  </div>
-
-                </div>
-                <h6>Projects</h6>
-                <hr class="mt-0 mb-4">
-                <div class="row pt-1">
-                  <div class="col-6 mb-3">
-                    <h6>Recent</h6>
-                    <p class="text-muted">Lorem ipsum</p>
-                  </div>
-                  <div class="col-6 mb-3">
-                    <h6>Most Viewed</h6>
-                    <p class="text-muted">Dolor sit amet</p>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
