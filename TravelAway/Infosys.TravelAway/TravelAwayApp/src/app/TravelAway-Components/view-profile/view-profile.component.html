@@ -58,16 +58,28 @@
                       <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.dateOfBirth }}</p>
                       <input class="inputborderless" type="date" name="dateOfBirth" [value]="customerProfile.dateOfBirth" *ngIf="updateInProgress" />
                     </div>
+
                     <div class="col-4 mb-3">
                       <h6>Gender</h6>
                       <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.gender }}</p>
-                      <select *ngIf="updateInProgress" name="gender" required>
+                      <select class="inputborderless" *ngIf="updateInProgress" name="gender" required>
                         <option value="" disabled>--Select Gender--</option>
                         <option value="M" [selected]="this.customerProfile.gender === 'M'">Male</option>
                         <option value="F" [selected]="this.customerProfile.gender === 'F'">Female</option>
                       </select>
                     </div>
 
+                    <div class="col-4 mb-3">
+                      <h6>Address</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.address }}</p>
+                      <input class="inputborderless" type="text" name="address" [value]="customerProfile.address" *ngIf="updateInProgress" />
+                    </div>
+
+                    <div class="col-4 mb-3" *ngIf="updateInProgress">
+                      <h6>Password</h6>
+                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.password }}</p>
+                      <input class="inputborderless" type="text" name="dateOfBirth" [value]="customerProfile.password" *ngIf="updateInProgress" />
+                    </div>
                   </div>
                   <h6>Projects</h6>
                   <hr class="mt-0 mb-4">
