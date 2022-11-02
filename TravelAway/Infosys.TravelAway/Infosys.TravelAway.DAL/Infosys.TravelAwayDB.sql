@@ -489,7 +489,7 @@ CREATE Procedure usp_RegisterCustomer (
 					SET @ReturnVal=-7
 				   ELSE 
 					BEGIN
-							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address,SysDateOfJoining) VALUES
+							INSERT INTO [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address,SysDateOfJoining,SysLastLogin,SysLogoutTime) VALUES
 							  (
 							  CONCAT('C' ,Next value for CustomerSequence),
 							  @FirstName,
@@ -500,6 +500,8 @@ CREATE Procedure usp_RegisterCustomer (
 							  @ContactNumber,
 							  @DateOfBirth,
 							  @Address,
+							  GETDATE(),
+							  GETDATE(),
 							  GETDATE()
 							  )			
 							SET @ReturnVal=1
