@@ -382,57 +382,57 @@ INSERT Into [dbo].[PackageDetails] VALUES(
 
 --Inserts HardCoded Values for Customers using CustomerSequence
 
-INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES(
-	CONCAT('C', NEXT VALUE FOR CustomerSequence),
-	'Areetra',
-	'Halder',
-	'areetra.halder@infosys.com',
-	'123456',
-	'M',
-	'8881480202',
-	'24-MAY-2000',
-	'Infosys, Pune'
-),(
-	CONCAT('C', NEXT VALUE FOR CustomerSequence),
-	'Sujit',
-	'Debnath',
-	'sujit.debnath@infosys.com',
-	'1285693',
-	'M',
-	'9679852103',
-	'27-OCT-2000',
-	'Kolaghat,West Bengal'
-),(
-	CONCAT('C', NEXT VALUE FOR CustomerSequence),
-	'Sonali',
-	'Patra',
-	'sonali.patra@infosys.com',
-	'1285693',
-	'F',
-	'9274853103',
-	'27-NOV-2000',
-	'Kolaghat,West Bengal'
-),(
-	CONCAT('C', NEXT VALUE FOR CustomerSequence),
-	'Vishal',
-	'Shukla',
-	'vishal.shukla03@infosys.com',
-	'1285687',
-	'M',
-	'7376944196',
-	'02-JAN-2000',
-	'Pune,Maharastra'
-),(
-	CONCAT('C', NEXT VALUE FOR CustomerSequence),
-	'Siddartha',
-	'Morri',
-	'venkata.morri@infosys.com',
-	'1285690',
-	'M',
-	'9494258758',
-	'30-JAN-2000',
-	'Pune,Maharastra'
-)
+--INSERT Into [dbo].[Customers](CustomerID,FirstName,LastName,EmailId,Password,Gender,ContactNumber,DateOfBirth,Address) VALUES(
+--	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+--	'Areetra',
+--	'Halder',
+--	'areetra.halder@infosys.com',
+--	'123456',
+--	'M',
+--	'8881480202',
+--	'24-MAY-2000',
+--	'Infosys, Pune'
+--),(
+--	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+--	'Sujit',
+--	'Debnath',
+--	'sujit.debnath@infosys.com',
+--	'1285693',
+--	'M',
+--	'9679852103',
+--	'27-OCT-2000',
+--	'Kolaghat,West Bengal'
+--),(
+--	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+--	'Sonali',
+--	'Patra',
+--	'sonali.patra@infosys.com',
+--	'1285693',
+--	'F',
+--	'9274853103',
+--	'27-NOV-2000',
+--	'Kolaghat,West Bengal'
+--),(
+--	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+--	'Vishal',
+--	'Shukla',
+--	'vishal.shukla03@infosys.com',
+--	'1285687',
+--	'M',
+--	'7376944196',
+--	'02-JAN-2000',
+--	'Pune,Maharastra'
+--),(
+--	CONCAT('C', NEXT VALUE FOR CustomerSequence),
+--	'Siddartha',
+--	'Morri',
+--	'venkata.morri@infosys.com',
+--	'1285690',
+--	'M',
+--	'9494258758',
+--	'30-JAN-2000',
+--	'Pune,Maharastra'
+--)
 
 
 
@@ -513,12 +513,7 @@ CREATE Procedure usp_RegisterCustomer (
 GO
 
 
---DECLARE @ReturnValue INT
---EXEC @ReturnValue = [usp_RegisterCustomer] 'Joey','Tribbani','vishalsharma@gmail.com','241522634','M','1100321321','01-JAN-2000','Hinjewadi Phase II',NULL
 
-
-
---select * from [dbo].[Customers]
 
 IF OBJECT_ID('usp_Login') IS NOT NULL
 	DROP TABLE usp_Login
@@ -566,13 +561,17 @@ Create procedure usp_Logout(
 	END
 GO
 
---Declare @returnval int
---EXEC @returnval = [usp_Login] 'venkata.morri@infosys.com','1285690'
+
+DECLARE @ReturnValue INT
+EXEC @ReturnValue = [usp_RegisterCustomer] 'Joey','Tribbani','vishalsharma@gmail.com','241522634','M','1100321321','01-JAN-2000','Hinjewadi Phase II'
+
+Declare @returnval int
+EXEC @returnval = [usp_Login] 'vishalsharma@gmail.com','241522634'
 --Select @returnval
 
 
---Declare @returnval2 int
---EXEC @returnval2 = [usp_Logout] 'C1003'
+Declare @returnval2 int
+EXEC @returnval2 = [usp_Logout] 'C1000'
 --Select @returnval2
 
 select * from [dbo].[Customers]
