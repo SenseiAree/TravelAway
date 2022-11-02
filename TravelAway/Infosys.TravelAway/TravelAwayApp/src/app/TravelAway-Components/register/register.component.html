@@ -51,7 +51,7 @@
 
           </div> 
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" #passwordRef pattern="[^-\s]+" ngModel name="password" id="floatingPassword" placeholder="Password" required>
+            <input type="password" class="form-control rounded-3" #passwordRef pattern="[^-\s]{8,16}" ngModel name="password" id="floatingPassword" placeholder="Password" required>
             <label for="floatingPassword">Password</label>
 
             <div class="container btn-outline-danger btn" style="border: none;" *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)">
@@ -64,7 +64,7 @@
 
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" (input)="passwordConfirm(passwordRef,confirmPasswordRef)" #confirmPasswordRef pattern="[^-\s]+" name="confirmPassword" id="floatingCPassword" placeholder="Confirm Password" required>
+            <input type="password" class="form-control rounded-3" (input)="passwordConfirm(passwordRef,confirmPasswordRef)" #confirmPasswordRef pattern="[^-\s]{8,16}" name="confirmPassword" id="floatingCPassword" placeholder="Confirm Password" required>
             <label for="floatingCPassword">Confirm Password</label>
           </div>
           <div class="form-floating mb-3 form-group">
