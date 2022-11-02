@@ -140,7 +140,6 @@ namespace Infosys.TravelAway.DAL
                     customerTobeUpdated.FirstName = customer.FirstName;
                     customerTobeUpdated.LastName = customer.LastName;
                     customerTobeUpdated.EmailId = customer.EmailId;
-                    customerTobeUpdated.Password = customer.Password;
                     customerTobeUpdated.Gender = customer.Gender;
                     customerTobeUpdated.ContactNumber = customer.ContactNumber;
                     customerTobeUpdated.DateOfBirth = customer.DateOfBirth;

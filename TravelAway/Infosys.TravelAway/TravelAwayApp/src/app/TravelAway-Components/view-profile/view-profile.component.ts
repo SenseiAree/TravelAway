@@ -51,7 +51,6 @@ export class ViewProfileComponent implements OnInit {
     let dateOfBirth: string = div[4].value;
     let gender: string = div[5].value;
     let address: string = div[6].value;
-    let password: string = div[7].value;
     for (var i = 0; i < div.length; i++) {
       console.log(div[i].value);
     }
@@ -73,7 +72,7 @@ export class ViewProfileComponent implements OnInit {
       contactNumber: contactNumber,
       dateOfBirth: dateOfBirth,
       emailId: emailId,
-      password: password,
+      password: null,
       packageDetailsId: null,
       sysDateOfJoining: sessionStorage.getItem('SysDateOfJoining').substring(0,10),
       sysLastLogin: sessionStorage.getItem('SysLastLogin').substring(0, 10),

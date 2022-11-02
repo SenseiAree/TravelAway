@@ -74,12 +74,7 @@
                       <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.address }}</p>
                       <input class="inputborderless" type="text" name="address" [value]="customerProfile.address" *ngIf="updateInProgress" />
                     </div>
-
-                    <div class="col-4 mb-3" *ngIf="updateInProgress">
-                      <h6>Password</h6>
-                      <p class="text-muted" *ngIf="!updateInProgress">{{ this.customerProfile.password }}</p>
-                      <input class="inputborderless" type="text" name="dateOfBirth" [value]="customerProfile.password" *ngIf="updateInProgress" />
-                    </div>
+                  
                   </div>
                   <h6>Statistics</h6>
                   <hr class="mt-0 mb-4">

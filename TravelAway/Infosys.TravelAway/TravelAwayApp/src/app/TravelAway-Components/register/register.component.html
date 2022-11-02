@@ -101,7 +101,7 @@
             <label for="floatingInputAddress">Address</label>
           </div>
           <div >
-            <button [disabled]="signupForm.valid" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+            <button [disabled]="!signupForm.valid" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
           </div>
           <p *ngIf="signupSuccess">Sign up successful. You can now log in.</p>
           <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
