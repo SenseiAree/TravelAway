@@ -19,13 +19,13 @@
           <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/home" class="nav-link">Packages</a>
+          <a routerLink="/packages" class="nav-link">Packages</a>
         </li>
         <li class="nav-item">
           <a routerLink="/404Error" class="nav-link">FAQs</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/404Error" class="nav-link">About</a>
+        <li class="nav-item" *ngIf="firstName?.length > 0">
+          <a routerLink="/viewProfile" class="nav-link">View {{firstName}}'s Profile</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown">Settings</a>

@@ -87,6 +87,21 @@ export class ViewProfileComponent implements OnInit {
         this.response = responseData;
         if (this.response) {
           console.log("Updation Successful");
+          sessionStorage.setItem('CustomerId',this.customerProfile.customerId );
+          sessionStorage.setItem('FirstName', this.customerProfile.firstName);
+          sessionStorage.setItem('LastName', this.customerProfile.lastName);
+          sessionStorage.setItem('Gender', this.customerProfile.gender);
+          sessionStorage.setItem('Address', this.customerProfile.address);
+          sessionStorage.setItem('ContactNumber', this.customerProfile.contactNumber);
+          sessionStorage.setItem('DateOfBirth', this.customerProfile.dateOfBirth);
+          sessionStorage.setItem('EmailId', this.customerProfile.emailId);
+          sessionStorage.setItem('Password', this.customerProfile.password);
+          sessionStorage.setItem('PackageDetailsId', this.customerProfile.packageDetailsId);
+          sessionStorage.setItem('SysDateOfJoining', this.customerProfile.sysDateOfJoining);
+          sessionStorage.setItem('SysLastLogin', this.customerProfile.sysLastLogin);
+          sessionStorage.setItem('SysLogoutTime', this.customerProfile.sysLogoutTime);
+          sessionStorage.setItem('PackageDetails', this.customerProfile.packageDetails);
+
         } else {
           console.log("Updation Failed. Try Again sometime later.");
         }

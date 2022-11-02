@@ -4,12 +4,14 @@ import { Error404PageNotFoundComponent } from './TravelAway-Components/error404-
 import { HomeComponent } from './TravelAway-Components/home/home.component';
 import { LoginComponent } from './TravelAway-Components/login/login.component';
 import { RegisterComponent } from './TravelAway-Components/register/register.component';
+import { ViewPackagesComponent } from './TravelAway-Components/view-packages/view-packages.component';
 import { ViewProfileComponent } from './TravelAway-Components/view-profile/view-profile.component';
 import { LoginAndSignupGuardService } from './TravelAway-Services/login-and-signup-guard.service';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'packages', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginAndSignupGuardService]},
   { path: 'signup', component: RegisterComponent, canActivate: [LoginAndSignupGuardService] },
   { path: '#', component: HomeComponent },

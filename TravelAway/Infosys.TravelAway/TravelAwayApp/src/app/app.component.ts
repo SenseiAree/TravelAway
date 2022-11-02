@@ -12,6 +12,7 @@ import { TravelAwayServiceService } from './TravelAway-Services/travel-away-serv
 })
 export class AppComponent implements OnInit {
   title = 'TravelAway';
+  firstName: string = sessionStorage.getItem('FirstName');
   buttonNameAndLinks: IButtonLink[] = [
     { buttonName: "Log In", routerLink: "/login", buttonClass: "fa-user" },
     { buttonName: "Sign up", routerLink: "/signup", buttonClass: "fa-solid fa-arrow-up-right-from-square" }
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (sessionStorage.getItem("CustomerId") != null) {
       this.loginDone = true;
+      this.firstName = sessionStorage.getItem("FirstName");
     } else {
       this.loginDone = false;
     }
@@ -37,7 +39,10 @@ export class AppComponent implements OnInit {
     this._tAService.LogoutCustomer({
       customerId: sessionStorage.getItem('CustomerId')
     }).subscribe(
-      () => { console.log("Logout Successful"); },
+      () => {
+        console.log("Logout Successful");
+        this.firstName = '';
+      },
       () => { },
       () => { }
     );
