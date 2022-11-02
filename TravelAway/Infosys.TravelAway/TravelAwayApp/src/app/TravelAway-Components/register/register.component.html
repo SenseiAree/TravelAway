@@ -64,7 +64,7 @@
 
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" #confirmPasswordRef pattern="[^-\s]+" ngModel name="confirmPassword" id="floatingCPassword" placeholder="Confirm Password" required>
+            <input type="password" class="form-control rounded-3" (input)="passwordConfirm(passwordRef,confirmPasswordRef)" #confirmPasswordRef pattern="[^-\s]+" name="confirmPassword" id="floatingCPassword" placeholder="Confirm Password" required>
             <label for="floatingCPassword">Confirm Password</label>
           </div>
           <div class="form-floating mb-3 form-group">
@@ -100,7 +100,9 @@
             <input type="text" class="form-control rounded-3" #addressRef ngModel name="address" id="floatingInputAddress" placeholder="Address" required>
             <label for="floatingInputAddress">Address</label>
           </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+          <div >
+            <button [disabled]="signupForm.valid" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+          </div>
           <p *ngIf="signupSuccess">Sign up successful. You can now log in.</p>
           <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
           <div class="text-center pt-4 text-muted">Already a User? <a id=" forget" routerLink="/login">Log in here</a></div>

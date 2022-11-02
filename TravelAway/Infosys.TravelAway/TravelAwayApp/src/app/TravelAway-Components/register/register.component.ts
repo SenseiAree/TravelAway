@@ -18,6 +18,14 @@ export class RegisterComponent implements OnInit {
   
   constructor(private _tAService: TravelAwayServiceService, private router: Router) { }
   signupSuccess: boolean = false;
+  passwordConfirm(passwordRef: HTMLInputElement, confirmPasswordRef: HTMLInputElement) {
+
+    if (passwordRef.value != confirmPasswordRef.value) {
+      confirmPasswordRef.style.boxShadow = "0 0 10px 0 #dc3545";
+    } else {
+      confirmPasswordRef.style.boxShadow = "0 0 10px 0 #198754";
+    }
+  }
   ngOnInit(): void {
   }
   RegisterCustomer(signupForm: NgForm) {
