@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { AfterContentChecked, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IButtonLink } from './TravelAway-Interfaces/ibutton-link';
@@ -10,7 +10,7 @@ import { TravelAwayServiceService } from './TravelAway-Services/travel-away-serv
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked {
   title = 'TravelAway';
   firstName: string = sessionStorage.getItem('FirstName');
   buttonNameAndLinks: IButtonLink[] = [
@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
   loginDone: boolean;
   FirstName: string;
   constructor(private _logHomeInteract: LoginToHomeInteractionService,private router: Router, private _tAService: TravelAwayServiceService) { }
+    ngAfterContentChecked(): void {
+      this.firstName = sessionStorage.getItem("FirstName");
+    }
   ngOnInit(): void {
     if (sessionStorage.getItem("CustomerId") != null) {
       this.loginDone = true;
