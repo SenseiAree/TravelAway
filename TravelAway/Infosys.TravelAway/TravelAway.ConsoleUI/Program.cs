@@ -1,8 +1,8 @@
-﻿using Infosys.TravelAway.DAL;
-using Infosys.TravelAway.DAL.Models;
+﻿using TravelAway.DAL;
+using TravelAway.DAL.Models;
 using System;
 
-namespace Infosys.TravelAway.ConsoleUI
+namespace TravelAway.ConsoleUI
 {
     class Program
     {

@@ -1,11 +1,11 @@
-﻿using Infosys.TravelAway.DAL.Models;
-using Microsoft.Data.SqlClient;
+﻿using TravelAway.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 
-namespace Infosys.TravelAway.DAL
+namespace TravelAway.DAL
 {
     public class TravelAwayRepository
     {

@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32602.291
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33913.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infosys.TravelAway.DAL", "Infosys.TravelAway.DAL\Infosys.TravelAway.DAL.csproj", "{BC58CD60-4972-4F05-8844-F87DC0FBFB5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAway.DAL", "Infosys.TravelAway.DAL\TravelAway.DAL.csproj", "{BC58CD60-4972-4F05-8844-F87DC0FBFB5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infosys.TravelAway.ConsoleUI", "Infosys.TravelAway.ConsoleUI\Infosys.TravelAway.ConsoleUI.csproj", "{BB55B38D-EB9E-4BE0-BB67-B378DCD58003}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infosys.TravelAway.SL", "Infosys.TravelAway.SL\Infosys.TravelAway.SL.csproj", "{550C1A16-5A41-4491-80D3-3B50F81ECE50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAway.SL", "Infosys.TravelAway.SL\TravelAway.SL.csproj", "{550C1A16-5A41-4491-80D3-3B50F81ECE50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{BC58CD60-4972-4F05-8844-F87DC0FBFB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC58CD60-4972-4F05-8844-F87DC0FBFB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC58CD60-4972-4F05-8844-F87DC0FBFB5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB55B38D-EB9E-4BE0-BB67-B378DCD58003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB55B38D-EB9E-4BE0-BB67-B378DCD58003}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB55B38D-EB9E-4BE0-BB67-B378DCD58003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB55B38D-EB9E-4BE0-BB67-B378DCD58003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{550C1A16-5A41-4491-80D3-3B50F81ECE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{550C1A16-5A41-4491-80D3-3B50F81ECE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{550C1A16-5A41-4491-80D3-3B50F81ECE50}.Release|Any CPU.ActiveCfg = Release|Any CPU

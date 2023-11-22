@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Infosys.TravelAway.SL
+namespace TravelAway.SL
 {
     public class Startup
     {

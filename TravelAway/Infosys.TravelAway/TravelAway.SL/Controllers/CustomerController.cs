@@ -1,13 +1,13 @@
-﻿using Infosys.TravelAway.DAL;
-using Infosys.TravelAway.DAL.Models;
-using Infosys.TravelAway.SL.Models;
+﻿using TravelAway.DAL;
+using TravelAway.DAL.Models;
+using TravelAway.SL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Infosys.TravelAway.SL.Controllers
+namespace TravelAway.SL.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

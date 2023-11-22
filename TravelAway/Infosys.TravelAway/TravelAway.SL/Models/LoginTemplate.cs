@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Infosys.TravelAway.SL.Models
+namespace TravelAway.SL.Models
 {
     public class LoginTemplate
     {
